@@ -12,6 +12,7 @@ class Tpl:
         self._attibutes = {}
         self.y = {}
         self.label = {}
+        self.trends = {}
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'CATALOG' in line:
@@ -20,20 +21,23 @@ class Tpl:
                 if 'TIME SERIES' in line:
                     self._attibutes['data_idx'] = idx
                     break
-        self.filter_trends()
+                if 'CATALOG' in self._attibutes:
+                    adj_idx = idx-self._attibutes['CATALOG']-1
+                    if adj_idx > 0:
+                        self.trends[adj_idx] = line
 
     def filter_trends(self, pattern=''):
         """
         Filter available varaibles
         """
-        self.trends = {}
+        filtered_trends = {}
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'TIME SERIES' in line:
                     break
                 if pattern in line:
-                    self.trends[idx-self._attibutes['CATALOG']-1] = line
-        return self.trends
+                    filtered_trends[idx-self._attibutes['CATALOG']-1]=line
+        return filtered_trends
 
     def extract(self, variable_idx):
         """
@@ -50,4 +54,4 @@ class Tpl:
                     break
         self.time = time
         self.y[variable_idx] = data
-        self.label[variable_idx] = line.replace("\'", '')
+        self.label[variable_idx] = line.replace("\'", '').replace("\n", "")

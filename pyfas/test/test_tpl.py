@@ -23,6 +23,6 @@ def test_filter():
     assert 'PT' in PTs[3]
     assert 'POSITION' in PTs[3]
     assert 'TIEIN' in PTs[3]
-    tpl.filter_trends()
+    tpl.trends
     assert 'VOLGB' in tpl.trends[1]
 
