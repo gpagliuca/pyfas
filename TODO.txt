@@ -1,0 +1,8 @@
+16 - 11 - 2015
+tpl.py  
+should be more or less OK, still a bit of testing on the road is required
+ppl.py
+more or less ok, small things to fix: 
+1. the pipeline filter search also in the header
+2. the geometries must have a non staggered version
+3. the extraction must have the geometry extraction before, now is quite boring

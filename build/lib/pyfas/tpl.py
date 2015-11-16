@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Tpl:
     """
     Data extraction for tpl files (OLGA >= 6.0)
@@ -36,7 +37,7 @@ class Tpl:
                 if 'TIME SERIES' in line:
                     break
                 if pattern in line:
-                    filtered_trends[idx-self._attibutes['CATALOG']-1]=line
+                    filtered_trends[idx-self._attibutes['CATALOG']-1] = line
         return filtered_trends
 
     def extract(self, variable_idx):
