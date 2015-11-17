@@ -6,3 +6,6 @@ more or less ok, small things to fix:
 1. the pipeline filter search also in the header
 2. the geometries must have a non staggered version
 3. the extraction must have the geometry extraction before, now is quite boring
+
+17 -11 - 2015
+fixed issues for ppl
