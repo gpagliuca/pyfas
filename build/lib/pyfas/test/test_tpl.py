@@ -3,6 +3,7 @@ from pyfas import Tpl
 def test_init():
     tpl = Tpl("FC1_rev01.tpl")
     assert tpl.fname == "FC1_rev01.tpl"
+    assert int(tpl.time[1]) == 60
 
 def test_attributes():
     tpl = Tpl("FC1_rev01.tpl")
@@ -13,7 +14,6 @@ def test_attributes():
 def test_extraction():
     tpl = Tpl("FC1_rev01.tpl")
     tpl.extract(3)
-    assert int(tpl.time[1]) == 60
     assert tpl.data[3][0] == 9.973410e6
     assert 'Pressure' in tpl.label[3]
 

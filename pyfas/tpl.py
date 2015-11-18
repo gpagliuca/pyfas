@@ -26,6 +26,10 @@ class Tpl:
                     adj_idx = idx-self._attibutes['CATALOG']-1
                     if adj_idx > 0:
                         self.trends[adj_idx] = line
+        self.time= np.loadtxt(self.fname,
+                              skiprows=self._attibutes['data_idx']+1,
+                              unpack=True,
+                              usecols=(0,))
 
     def filter_trends(self, pattern=''):
         """
@@ -44,15 +48,14 @@ class Tpl:
         """
         Extract a specific varaible
         """
-        time, data = np.loadtxt(self.fname,
-                                skiprows=self._attibutes['data_idx']+1,
-                                unpack=True,
-                                usecols=(0, variable_idx))
+        data = np.loadtxt(self.fname,
+                          skiprows=self._attibutes['data_idx']+1,
+                          unpack=True,
+                          usecols=(variable_idx,))
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if idx == 1 + variable_idx+self._attibutes['CATALOG']:
                     metadata = line
                     break
-        self.time = time
         self.data[variable_idx] = data
         self.label[variable_idx] = line.replace("\'", '').replace("\n", "")
