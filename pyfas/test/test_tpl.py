@@ -14,7 +14,7 @@ def test_extraction():
     tpl = Tpl("FC1_rev01.tpl")
     tpl.extract(3)
     assert int(tpl.time[1]) == 60
-    assert tpl.y[3][0] == 9.973410e6
+    assert tpl.data[3][0] == 9.973410e6
     assert 'Pressure' in tpl.label[3]
 
 def test_filter():

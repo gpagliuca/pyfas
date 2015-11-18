@@ -99,12 +99,10 @@ class Ppl:
                         points.append(float(point))
                     except ValueError:
                         pass
-                self.data[variable_idx][1].append(points)
-
+                self.data[variable_idx][1].append(np.array(points))
         X = self.geometries[branch][0]
         X_average = [(x0+x1)/2 for x0, x1 in zip(X[:-1], X[1:])]
         if len(self.data[variable_idx][1][0]) == len(X):
-            self.data[variable_idx][0] = X
+            self.data[variable_idx][0] = np.array(X)
         else:
-            self.data[variable_idx][0] = X_average
-
+            self.data[variable_idx][0] = np.array(X_average)

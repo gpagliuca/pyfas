@@ -1,0 +1,63 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'configurable-http-proxy' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.25
+4 verbose cache add [ 'configurable-http-proxy', null ]
+5 verbose cache add name=undefined spec="configurable-http-proxy" args=["configurable-http-proxy",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'configurable-http-proxy',
+6 verbose parsed url   path: 'configurable-http-proxy',
+6 verbose parsed url   href: 'configurable-http-proxy' }
+7 silly lockFile 96374a31-configurable-http-proxy configurable-http-proxy
+8 verbose lock configurable-http-proxy /home/peppe/.npm/96374a31-configurable-http-proxy.lock
+9 silly lockFile 96374a31-configurable-http-proxy configurable-http-proxy
+10 silly lockFile 96374a31-configurable-http-proxy configurable-http-proxy
+11 verbose addNamed [ 'configurable-http-proxy', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 80c28e41-configurable-http-proxy configurable-http-proxy@
+14 verbose lock configurable-http-proxy@ /home/peppe/.npm/80c28e41-configurable-http-proxy.lock
+15 silly addNameRange { name: 'configurable-http-proxy', range: '*', hasData: false }
+16 verbose request where is /configurable-http-proxy
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id f45eb81d5e457520
+19 verbose url raw /configurable-http-proxy
+20 verbose url resolving [ 'https://registry.npmjs.org/', './configurable-http-proxy' ]
+21 verbose url resolved https://registry.npmjs.org/configurable-http-proxy
+22 verbose request where is https://registry.npmjs.org/configurable-http-proxy
+23 info trying registry request attempt 1 at 08:55:20
+24 http GET https://registry.npmjs.org/configurable-http-proxy
+25 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=3066562304:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+26 info trying registry request attempt 2 at 08:55:30
+27 http GET https://registry.npmjs.org/configurable-http-proxy
+28 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=3066562304:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+29 info trying registry request attempt 3 at 08:56:30
+30 http GET https://registry.npmjs.org/configurable-http-proxy
+31 silly lockFile 80c28e41-configurable-http-proxy configurable-http-proxy@
+32 silly lockFile 80c28e41-configurable-http-proxy configurable-http-proxy@
+33 error network tunneling socket could not be established, cause=3066562304:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+33 error network
+33 error network This is most likely not a problem with npm itself
+33 error network and is related to network connectivity.
+33 error network In most cases you are behind a proxy or have bad network settings.
+33 error network
+33 error network If you are behind a proxy, please make sure that the
+33 error network 'proxy' config is set properly.  See: 'npm help config'
+34 error System Linux 4.2.0-18-generic
+35 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "-g" "configurable-http-proxy"
+36 error cwd /media/sf_win7/PROJECTS/01 - Developments/pyfas
+37 error node -v v0.10.25
+38 error npm -v 1.4.21
+39 error code ECONNRESET
+40 verbose exit [ 1, true ]

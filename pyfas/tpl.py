@@ -11,7 +11,7 @@ class Tpl:
         """
         self.fname = fname
         self._attibutes = {}
-        self.y = {}
+        self.data = {}
         self.label = {}
         self.trends = {}
         with open(self.fname) as fobj:
@@ -54,5 +54,5 @@ class Tpl:
                     metadata = line
                     break
         self.time = time
-        self.y[variable_idx] = data
+        self.data[variable_idx] = data
         self.label[variable_idx] = line.replace("\'", '').replace("\n", "")
