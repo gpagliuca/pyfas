@@ -38,10 +38,11 @@ class Tpl:
         filtered_trends = {}
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
+                variable_idx = idx-self._attibutes['CATALOG']-1
                 if 'TIME SERIES' in line:
                     break
-                if pattern in line:
-                    filtered_trends[idx-self._attibutes['CATALOG']-1] = line
+                if pattern in line and variable_idx > 0:
+                    filtered_trends[variable_idx] = line
         return filtered_trends
 
     def extract(self, variable_idx):
