@@ -26,10 +26,9 @@ class Tpl:
                     adj_idx = idx-self._attibutes['CATALOG']-1
                     if adj_idx > 0:
                         self.trends[adj_idx] = line
-        self.time= np.loadtxt(self.fname,
-                              skiprows=self._attibutes['data_idx']+1,
-                              unpack=True,
-                              usecols=(0,))
+        self.time = np.loadtxt(self.fname,
+                               skiprows=self._attibutes['data_idx']+1,
+                               unpack=True, usecols=(0,))
 
     def filter_trends(self, pattern=''):
         """

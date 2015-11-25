@@ -88,6 +88,8 @@ class Ppl:
         Extract a specific varaible
         """
         branch = self._define_branch(variable_idx)
+        label = self.profiles[variable_idx].replace("\n", "")
+        self.label[variable_idx] = label
         self.data[variable_idx] = [[], []]
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj.readlines()[
