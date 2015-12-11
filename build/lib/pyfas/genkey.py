@@ -14,6 +14,3 @@ class Genkey:
         genkey = self.template.substitute(values)
         with open(new_name, "w") as fobj:
             fobj.write(genkey)
-
-
-

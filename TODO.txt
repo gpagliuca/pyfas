@@ -9,3 +9,14 @@ more or less ok, small things to fix:
 
 17 -11 - 2015
 fixed issues for ppl
+
+11 - 12 -2015
+Added a lot of features and the tab class. Still ongoing.
+For the tab class:
+1. The "T" in the dataframe must be changed, it is confused with the T dataframe
+method
+2. data["properties"] has a white space at the beginning and at the the end that
+has to be removed.
+3. For the keyword files the data DataFrame has to be structured but at least
+the extraction not works fine (the incredible execution time issue has been
+fixed).
