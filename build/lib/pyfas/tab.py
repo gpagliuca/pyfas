@@ -1,4 +1,5 @@
 import re
+from collections import OrderedDict
 import itertools as it
 import numpy as np
 import pandas as pd
@@ -8,13 +9,13 @@ class Tab():
     def __init__(self, fname):
         self.fname = fname
         self.tab_type = self._tab_type()
-        self.tab_data = {'nfluids': 0, 'fluids': [], 'properties' : [],
+        self.metadata = {'nfluids': 0, 'fluids': [], 'properties' : [],
                          't_points': [], 'p_points': [],
                          't_array': [], 'p_array': []}
         if self.tab_type == 'fixed':
-            self._tab_data_fixed()
+            self._metadata_fixed()
         else:
-            self._tab_data_keyword()
+            self._metadata_keyword()
 
     def _tab_type(self):
         # Keyword of fixed
@@ -27,7 +28,7 @@ class Tab():
             else:
                 return 'fixed'
 
-    def _tab_data_fixed(self):
+    def _metadata_fixed(self):
         """
         Define the most important tab parametersfor a fixed-type tab file
         """
@@ -45,19 +46,20 @@ class Tab():
                     fluids[fluid] = [idx, contents[idx+1], contents[idx+2]]
                 if idx not in (0, 1) and re.findall("[\w\-\/\,]*[()]+", line):
                     prop, unit = line.replace("\n", "").split("(")[0:2]
+                    prop = prop[1:-1]
                     props_idx[idx] = (fluid, prop, unit.replace(")", ""))
-        self.tab_data['nfluids'] = len(fluids)
+        self.metadata['nfluids'] = len(fluids)
         # Delete the fluid idx from multiple fluids tab
         for fluid in fluids:
-            if self.tab_data['nfluids'] != 1:
+            if self.metadata['nfluids'] != 1:
                 fluids[fluid] = [el for idx, el in
                                  enumerate(fluids[fluid]) if idx != 1]
         # Define T and P arrays and all the other patrameters for a fixed tab
         for fluid_idx, fluid in enumerate(fluids):
             p_points, t_points = re.findall('[\w+\-\.]+', fluids[fluid][1])[0:2]
-            self.tab_data['t_points'].append(int(t_points))
-            self.tab_data['p_points'].append(int(p_points))
-            self.tab_data['fluids'].append(fluid)
+            self.metadata['t_points'].append(int(t_points))
+            self.metadata['p_points'].append(int(p_points))
+            self.metadata['fluids'].append(fluid)
             # t and p arrays definition
             with open(self.fname) as fobj:
                 contents = fobj.readlines()
@@ -70,21 +72,21 @@ class Tab():
                     #  .100000E+06   -.500000E+02
                     p_0, t_0 = re.findall('[\w+\-\.]+', contents[3])
                     p_step, t_step = re.findall('[\w+\-\.]+', contents[2])
-                    t_f = float(t_step)*self.tab_data['t_points'][fluid_idx] + float(t_0)
-                    p_f = float(p_step)*self.tab_data['p_points'][fluid_idx] + float(p_0)
-                    self.tab_data['t_array'].append(np.arange(float(t_0), t_f, float(t_step)))
-                    self.tab_data['p_array'].append(np.arange(float(p_0), p_f, float(p_step)))
+                    t_f = float(t_step)*self.metadata['t_points'][fluid_idx] + float(t_0)
+                    p_f = float(p_step)*self.metadata['p_points'][fluid_idx] + float(p_0)
+                    self.metadata['t_array'].append(np.arange(float(t_0), t_f, float(t_step)))
+                    self.metadata['p_array'].append(np.arange(float(p_0), p_f, float(p_step)))
                 else:
                     ## for tab file like 'Malampaya_export_gas_2011.tab':
-                    if self.tab_data['nfluids'] != 1:
+                    if self.metadata['nfluids'] != 1:
                         t_p = self._partial_extraction_fixed(fluids[fluid][0], 3)
                     else:
                         t_p = self._partial_extraction_fixed(fluids[fluid][0], 2)
-                    len_t_array = self.tab_data['t_points'][fluid_idx]
-                    len_p_array = self.tab_data['p_points'][fluid_idx]
+                    len_t_array = self.metadata['t_points'][fluid_idx]
+                    len_p_array = self.metadata['p_points'][fluid_idx]
 
-        self.tab_data['p_array'].append(t_p[:len_p_array])
-        self.tab_data['t_array'].append(t_p[len_p_array:
+        self.metadata['p_array'].append(t_p[:len_p_array])
+        self.metadata['t_array'].append(t_p[len_p_array:
                                                     len_t_array+len_p_array])
         self.data = pd.DataFrame(props_idx,
                                        index=("Fluid", "Property",
@@ -107,8 +109,8 @@ class Tab():
     def _export_all_fixed(self, definition):
         T = []
         P = []
-        for t, p in it.product(self.tab_data["t_array"][0],
-                               self.tab_data["p_array"][0]):
+        for t, p in it.product(self.metadata["t_array"][0],
+                               self.metadata["p_array"][0]):
             T.append(t)
             P.append(p/1e5)
 
@@ -117,12 +119,12 @@ class Tab():
         values = []
         for idx in self.data.index:
             values.append(self._partial_extraction_fixed(idx+1))
-        self.data["T"] = Ts
-        self.data["P"] = Ps
+        self.data["Temperature"] = Ts
+        self.data["Pressure"] = Ps
         self.data["values"] = values
 
 
-    def _tab_data_keyword(self):
+    def _metadata_keyword(self):
         """
         Define the most important tab parameters for a keyword-type tab file
         """
@@ -130,49 +132,41 @@ class Tab():
             for idx, line in enumerate(fobj):
                 if 'PVTTABLE LABEL' in line:
                     label = re.findall('"\w*"', line)[0].replace('"', '')
-                    self.tab_data["fluids"].append(label)
+                    self.metadata["fluids"].append(label)
 
                 if 'PRESSURE = (' in line:
                     line = line.split('=')[1]
                     vals = re.findall('[\d\-\.eE+]+', line)
-                    self.tab_data['p_array'] = np.array(
+                    self.metadata['p_array'] = np.array(
                                                [float(val) for val in vals])
                 if 'TEMPERATURE = (' in line:
                     line = line.split('=')[1]
                     vals = re.findall('[\d\-\.eE+]+', line)
-                    self.tab_data['t_array'] = np.array(
+                    self.metadata['t_array'] = np.array(
                                                 [float(val) for val in vals])
                 if 'COLUMNS = (' in line:
                     line = line.split('=')[1].replace(' (', '').replace(')\n', '')
-                    self.tab_data['properties'] = line.split(',')
-
-
-            self.tab_data["t_points"] = len(self.tab_data["t_array"])
-            self.tab_data["p_points"] = len(self.tab_data["p_array"])
-            self.tab_data["nfluids"] = len(self.tab_data["fluids"])
-
-            # raw_data = np.array(self.tab_data['properties'])
-            # for idx, line in enumerate(fobj):
-            #     try:
-            #         line = line.split('=')[1]
-            #         vals = re.findall('[\d\-\.eE+]+', line)
-            #         raw_data = np.vstack([raw_data, vals])
-            #     except IndexError:
-            #         pass
-            #     except ValueError:
-            #         break
-            # raw_data = raw_data.transpose()
-            # self.properties_values = {}
-            # for line in raw_data:
-            #     vals_float = np.array([float(val) for val in line[1:]])
-            #     self.properties_values[line[0]] = vals_float
+                    self.metadata['properties'] = line.split(',')
+            self.metadata["t_points"] = len(self.metadata["t_array"])
+            self.metadata["p_points"] = len(self.metadata["p_array"])
+            self.metadata["nfluids"] = len(self.metadata["fluids"])
+            self.data = pd.DataFrame(self.metadata["properties"])
 
     def _export_all_keyword(self, definition=1):
-        for fluid_idx, fluid in enumerate(self.tab_data["fluids"]):
+        data = {}
+        for fluid_idx, fluid in enumerate(self.metadata["fluids"]):
+            data[fluid] = {}
             with open(self.fname) as fobj:
                 text = fobj.read().split("!Phase properties")[1+fluid_idx]
-                self.values = re.findall("[\d]+[\.\deE\+\-]+", text)
-
+                try:
+                    text = text.split("LABEL")[0]
+                except IndexError:
+                    pass
+                values = re.findall("[\.\d]+[\.\deE\+\-]+", text)
+            nprops = len(self.metadata["properties"])
+            for idx, prop in enumerate(self.metadata["properties"]):
+                data[fluid][prop] = [float(x) for x in values[idx::nprops]]
+        self.data = pd.DataFrame(data)
 
     def export_all(self, definition=1):
         """ Generate a zip file with all the properties """

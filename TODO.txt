@@ -18,5 +18,10 @@ method
 2. data["properties"] has a white space at the beginning and at the the end that
 has to be removed.
 3. For the keyword files the data DataFrame has to be structured but at least
-the extraction not works fine (the incredible execution time issue has been
+the extraction now works fine (the incredible execution time issue has been
 fixed).
+
+16 - 12 -2015
+Solved all the issues above mentioned, the problem not is that the data
+structures for keyword and fixed files is different. It must me armonized. The
+keyword dataframe is easier to use.
