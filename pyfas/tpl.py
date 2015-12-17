@@ -1,4 +1,6 @@
+import os
 import numpy as np
+import pandas as pd
 
 
 class Tpl:
@@ -59,3 +61,21 @@ class Tpl:
                     break
         self.data[variable_idx] = data
         self.label[variable_idx] = line.replace("\'", '').replace("\n", "")
+
+    def to_excel(self, *args):
+        """
+        Dump all the data to excel, fname and path can be passed as args
+        """
+        path = os.getcwd()
+        fname = "data.xlsx"
+        if len(args) > 0:
+            fname = args[0]
+        if len(args) > 1:
+            path = args[1]
+        idxs = self.filter_trends("")
+        for idx in idxs:
+            self.extract(idx)
+        df = pd.DataFrame(self.data)
+        df.columns = self.label.values()
+        df.insert(0, "Time [s]", self.time)
+        df.to_excel(path + os.sep + fname)

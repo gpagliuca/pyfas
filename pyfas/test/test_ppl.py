@@ -1,3 +1,4 @@
+import os
 from pyfas import Ppl
 
 def test_init():
@@ -36,4 +37,14 @@ def test_filter():
     ppl.profiles
     assert 'GG' in ppl.profiles[1]
 
-
+def test_to_excel():
+    ppl = Ppl("FC1_rev01.ppl")
+    ppl.to_excel()
+    assert "data.xlsx" in os.listdir()
+    os.remove("data.xlsx")
+    ppl.to_excel("test.xlsx")
+    assert "test.xlsx" in os.listdir()
+    os.remove("test.xlsx")
+    ppl.to_excel("home.xlsx", "/tmp")
+    assert "home.xlsx" in os.listdir("/tmp")
+    os.remove("/tmp/home.xlsx")

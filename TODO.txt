@@ -25,3 +25,7 @@ fixed).
 Solved all the issues above mentioned, the problem not is that the data
 structures for keyword and fixed files is different. It must me armonized. The
 keyword dataframe is easier to use.
+
+17 - 12 - 2015
+Added the to_excel functionality for tpl and ppl files. some further testing to
+be added.

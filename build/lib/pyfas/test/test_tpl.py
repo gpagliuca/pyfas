@@ -1,3 +1,4 @@
+import os
 from pyfas import Tpl
 
 def test_init():
@@ -26,3 +27,14 @@ def test_filter():
     tpl.trends
     assert 'VOLGB' in tpl.trends[1]
 
+def test_to_excel():
+    tpl = Tpl("FC1_rev01.tpl")
+    tpl.to_excel()
+    assert "data.xlsx" in os.listdir()
+    os.remove("data.xlsx")
+    tpl.to_excel("test.xlsx")
+    assert "test.xlsx" in os.listdir()
+    os.remove("test.xlsx")
+    tpl.to_excel("home.xlsx", "/tmp")
+    assert "home.xlsx" in os.listdir("/tmp")
+    os.remove("/tmp/home.xlsx")

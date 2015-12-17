@@ -6,34 +6,23 @@ Pyfas provides python tools for a flow assurance engineer.
 Typical usage often looks like this::
 
     #!/usr/bin/env python
-
     tpl = Tpl(fname)
     d, m = tpl.extract(1)
 
-(Note the double-colon and 4-space indent formatting above.)
 
-Paragraphs are separated by blank lines. *Italics*, **bold**,
-and ``monospace`` look like this.
-
-
-A Section
+Tpl files
 =========
 
-Lists look like this:
+Methods avaialbe for tpl files:
 
-* First
+* Extract
 
-* Second. Can be multiple lines
-  but must be indented properly.
+* to_excel
 
-A Sub-Section
+To be added
 -------------
 
-Numbered lists look like you'd expect:
+Tab files
+========
 
-1. hi there
-
-2. must be going
-
-Urls are http://like.this and links can be
-written `like this <http://www.example.com/foo/bar>`_.
+To be added

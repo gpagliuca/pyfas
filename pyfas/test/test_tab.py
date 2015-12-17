@@ -4,7 +4,7 @@ def test_type():
     fixed_single = Tab("3P_single-fluid_fixed.tab")
     fixed_multiple = Tab("3P_multi-fluid_fixed.tab")
     keyword_single = Tab("3P_single-fluid_key.tab")
-    # keyword_multiple = Tab("3P_multi-fluid_key.tab")
+    keyword_multiple = Tab("3P_multi-fluid_key.tab")
 
     assert fixed_single.tab_type == 'fixed'
     assert fixed_multiple.tab_type == 'fixed'
@@ -35,5 +35,5 @@ def test_keyword_multiple():
     tab = Tab("3P_multi-fluid_key.tab")
     assert tab.metadata["nfluids"] == 3
     tab.export_all()
-    # assert tab.metadata["properties"][3] == "ROHL"
+    assert tab.metadata["properties"][3] == "ROHL"
 

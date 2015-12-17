@@ -1,5 +1,4 @@
 import re
-from collections import OrderedDict
 import itertools as it
 import numpy as np
 import pandas as pd
@@ -9,7 +8,7 @@ class Tab():
     def __init__(self, fname):
         self.fname = fname
         self.tab_type = self._tab_type()
-        self.metadata = {'nfluids': 0, 'fluids': [], 'properties' : [],
+        self.metadata = {'nfluids': 0, 'fluids': [], 'properties': [],
                          't_points': [], 'p_points': [],
                          't_array': [], 'p_array': []}
         if self.tab_type == 'fixed':
@@ -18,7 +17,9 @@ class Tab():
             self._metadata_keyword()
 
     def _tab_type(self):
-        # Keyword of fixed
+        """
+        Private method to define the tab type
+        """
         with open(self.fname) as fobj:
             contents = fobj.readlines()
             for line in contents:
@@ -56,7 +57,8 @@ class Tab():
                                  enumerate(fluids[fluid]) if idx != 1]
         # Define T and P arrays and all the other patrameters for a fixed tab
         for fluid_idx, fluid in enumerate(fluids):
-            p_points, t_points = re.findall('[\w+\-\.]+', fluids[fluid][1])[0:2]
+            p_points, t_points = re.findall('[\w+\-\.]+',
+                                            fluids[fluid][1])[0:2]
             self.metadata['t_points'].append(int(t_points))
             self.metadata['p_points'].append(int(p_points))
             self.metadata['fluids'].append(fluid)
@@ -65,34 +67,47 @@ class Tab():
                 contents = fobj.readlines()
                 if len(re.findall('[\w+\-\.]+', contents[2])) == 2 and\
                    len(re.findall('[\w+\-\.]+', contents[3])) == 2:
-                    ## for tab file like 'Pearl-2-rich-sep2008.tab':
-                    #'WATER-OPTION ENTROPY 'P-2-rich EOS = PR
-                    #   42   35    .205826E-01
-                    #  .487805E+06    .882353E+01
-                    #  .100000E+06   -.500000E+02
+                    """
+                    for tab file like 'Pearl-2-rich-sep2008.tab':
+                    'WATER-OPTION ENTROPY 'P-2-rich EOS = PR
+                       42   35    .205826E-01
+                      .487805E+06    .882353E+01
+                      .100000E+06   -.500000E+02
+                    """
                     p_0, t_0 = re.findall('[\w+\-\.]+', contents[3])
                     p_step, t_step = re.findall('[\w+\-\.]+', contents[2])
-                    t_f = float(t_step)*self.metadata['t_points'][fluid_idx] + float(t_0)
-                    p_f = float(p_step)*self.metadata['p_points'][fluid_idx] + float(p_0)
-                    self.metadata['t_array'].append(np.arange(float(t_0), t_f, float(t_step)))
-                    self.metadata['p_array'].append(np.arange(float(p_0), p_f, float(p_step)))
+                    t_points = self.metadata["t_points"]
+                    p_points = self.metadata["p_points"]
+                    t_f = float(t_step)*t_points[fluid_idx] + float(t_0)
+                    p_f = float(p_step)*p_points[fluid_idx] + float(p_0)
+                    self.metadata['t_array'].append(np.arange(float(t_0),
+                                                              t_f,
+                                                              float(t_step)))
+                    self.metadata['p_array'].append(np.arange(float(p_0),
+                                                              p_f,
+                                                              float(p_step)))
                 else:
-                    ## for tab file like 'Malampaya_export_gas_2011.tab':
+                    # for tab file like 'Malampaya_export_gas_2011.tab':
                     if self.metadata['nfluids'] != 1:
-                        t_p = self._partial_extraction_fixed(fluids[fluid][0], 3)
+                        t_p = self._partial_extraction_fixed(fluids[fluid][0],
+                                                             3)
                     else:
-                        t_p = self._partial_extraction_fixed(fluids[fluid][0], 2)
+                        t_p = self._partial_extraction_fixed(fluids[fluid][0],
+                                                             2)
                     len_t_array = self.metadata['t_points'][fluid_idx]
                     len_p_array = self.metadata['p_points'][fluid_idx]
 
         self.metadata['p_array'].append(t_p[:len_p_array])
         self.metadata['t_array'].append(t_p[len_p_array:
-                                                    len_t_array+len_p_array])
+                                        len_t_array+len_p_array])
         self.data = pd.DataFrame(props_idx,
-                                       index=("Fluid", "Property",
-                                              "Unit")).transpose()
+                                 index=("Fluid", "Property",
+                                        "Unit")).transpose()
 
     def _partial_extraction_fixed(self, idx, extra_idx=0):
+        """
+        Private method for a single extraction on a fixed-type tab file
+        """
         myarray = np.array([])
         with open(self.fname) as fobj:
             contents = fobj.readlines()[idx+extra_idx:]
@@ -107,6 +122,9 @@ class Tab():
         return myarray
 
     def _export_all_fixed(self, definition):
+        """
+        Exports all the properties for a fixed-type tab file
+        """
         T = []
         P = []
         for t, p in it.product(self.metadata["t_array"][0],
@@ -122,7 +140,6 @@ class Tab():
         self.data["Temperature"] = Ts
         self.data["Pressure"] = Ps
         self.data["values"] = values
-
 
     def _metadata_keyword(self):
         """
@@ -145,7 +162,8 @@ class Tab():
                     self.metadata['t_array'] = np.array(
                                                 [float(val) for val in vals])
                 if 'COLUMNS = (' in line:
-                    line = line.split('=')[1].replace(' (', '').replace(')\n', '')
+                    line = line.split('=')[1].replace(' (', '').replace(')\n',
+                                                                        '')
                     self.metadata['properties'] = line.split(',')
             self.metadata["t_points"] = len(self.metadata["t_array"])
             self.metadata["p_points"] = len(self.metadata["p_array"])
@@ -153,6 +171,9 @@ class Tab():
             self.data = pd.DataFrame(self.metadata["properties"])
 
     def _export_all_keyword(self, definition=1):
+        """
+        Export method for keyword tab files
+        """
         data = {}
         for fluid_idx, fluid in enumerate(self.metadata["fluids"]):
             data[fluid] = {}
@@ -169,12 +190,13 @@ class Tab():
         self.data = pd.DataFrame(data)
 
     def export_all(self, definition=1):
-        """ Generate a zip file with all the properties """
+        """
+        It makes all the properties avaiable as data attribute
+        """
         if self.tab_type == 'fixed':
             self._export_all_fixed(definition)
         if self.tab_type == 'keyword':
-             self._export_all_keyword(definition)
+            self._export_all_keyword(definition)
 
     def _partial_extraction_keyword(self, idx, extra_idx=0):
         return self.properties_values[idx]
-

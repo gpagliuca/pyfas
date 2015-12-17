@@ -1,3 +1,5 @@
+import os
+import pandas as pd
 import numpy as np
 
 
@@ -108,3 +110,31 @@ class Ppl:
             self.data[variable_idx][0] = np.array(X)
         else:
             self.data[variable_idx][0] = np.array(X_average)
+
+    def to_excel(self, *args):
+        """
+        Dump all the data to excel, fname and path can be passed as args
+        """
+        path = os.getcwd()
+        fname = "data.xlsx"
+        if len(args) > 0:
+            fname = args[0]
+        if len(args) > 1:
+            path = args[1]
+        idxs = self.filter_profiles("")
+        xl = pd.ExcelWriter(path + os.sep + fname)
+        for idx in idxs:
+            self.extract(idx)
+
+        labels = list(self.filter_profiles("").values())
+        for prof in self.data:
+            df = pd.DataFrame()
+            df["X"] = self.data[prof][0]
+            for ts, data in zip(self.time, self.data[prof][1]):
+                df[ts] = data
+            myvar = labels[prof-1].split(" ")[0]
+            br = labels[prof-1].split("\'")[5]
+            unit = labels[prof-1].split("\'")[7].replace("/", "-")
+            mylabel = "{} - {} - {}".format(myvar, br, unit)
+            df.to_excel(xl, sheet_name=mylabel)
+        xl.save()
