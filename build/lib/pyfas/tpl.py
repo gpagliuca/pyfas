@@ -69,8 +69,8 @@ class Tpl:
         Dump all the data to excel, fname and path can be passed as args
         """
         path = os.getcwd()
-        fname = self.fname.replace(".tpl", "") + ".xlsx"
-        if len(args) > 0:
+        fname = self.fname.replace(".tpl", "_tpl") + ".xlsx"
+        if len(args) > 0 and args[0] != "":
             path = args[0]
         idxs = self.filter_trends("")
         for idx in idxs:

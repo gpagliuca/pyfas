@@ -119,7 +119,7 @@ class Ppl:
         Dump all the data to excel, fname and path can be passed as args
         """
         path = os.getcwd()
-        fname = self.fname.replace(".ppl", "") + ".xlsx"
+        fname = self.fname.replace(".ppl", "_ppl") + ".xlsx"
         if len(args) > 0:
             path = args[0]
         idxs = self.filter_profiles("")

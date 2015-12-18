@@ -48,11 +48,11 @@ def test_filter():
 def test_to_excel():
     ppl = Ppl("FC1_rev01.ppl")
     ppl.to_excel()
-    assert "FC1_rev01.xlsx" in os.listdir()
-    xl = xlrd.open_workbook("FC1_rev01.xlsx")
+    assert "FC1_rev01_ppl.xlsx" in os.listdir()
+    xl = xlrd.open_workbook("FC1_rev01_ppl.xlsx")
     sh = xl.sheet_by_index(14)
     assert sh.cell_value(2, 2) == 1.654940e1
-    os.remove("FC1_rev01.xlsx")
+    os.remove("FC1_rev01_ppl.xlsx")
     ppl.to_excel("/tmp")
-    assert "FC1_rev01.xlsx" in os.listdir("/tmp")
-    os.remove("/tmp/FC1_rev01.xlsx")
+    assert "FC1_rev01_ppl.xlsx" in os.listdir("/tmp")
+    os.remove("/tmp/FC1_rev01_ppl.xlsx")

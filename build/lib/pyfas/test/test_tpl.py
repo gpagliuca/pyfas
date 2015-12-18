@@ -38,11 +38,11 @@ def test_filter():
 def test_to_excel():
     tpl = Tpl("FC1_rev01.tpl")
     tpl.to_excel()
-    assert "FC1_rev01.xlsx" in os.listdir()
-    xl = xlrd.open_workbook("FC1_rev01.xlsx")
+    assert "FC1_rev01_tpl.xlsx" in os.listdir()
+    xl = xlrd.open_workbook("FC1_rev01_tpl.xlsx")
     sh = xl.sheet_by_index(0)
     assert sh.cell_value(3, 4) == 9.973300e+06
-    os.remove("FC1_rev01.xlsx")
+    os.remove("FC1_rev01_tpl.xlsx")
     tpl.to_excel("/tmp")
-    assert "FC1_rev01.xlsx" in os.listdir("/tmp")
-    os.remove("/tmp/FC1_rev01.xlsx")
+    assert "FC1_rev01_tpl.xlsx" in os.listdir("/tmp")
+    os.remove("/tmp/FC1_rev01_tpl.xlsx")
