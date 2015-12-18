@@ -2,27 +2,18 @@
 Pyfas - FA tools
 ===========
 
-Pyfas provides python tools for a flow assurance engineer.
-Typical usage often looks like this::
+Pyfas is a python toolbox for flow assurance engineers.
 
-    #!/usr/bin/env python
-    tpl = Tpl(fname)
-    d, m = tpl.extract(1)
+At this moment in time the toolbox contains specific classes for tpl, ppl and tab files with dedicated methods and some minor utilities like the PI_read function.
+
+While some python knowledge si required to really make use of all the functionalities, some pre-defined notebooks can be of help to execute single specific tastks (like dumping all the trends or profiles in an excel spreadsheet). For these notebooks no python knowledge is required.
+
+These utilities utilities have been written for OLGA (verison > 6.X) tpl and ppl files but will be extended to Compas if and when something similar will be available
 
 
-Tpl files
-=========
-
-Methods avaialbe for tpl files:
-
-* Extract
-
-* to_excel
-
-To be added
--------------
-
-Tab files
+Examples
 ========
 
-To be added
+Examples and howto are provided <a href="to_be_added">here<a>
+
+

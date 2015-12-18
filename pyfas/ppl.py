@@ -120,7 +120,7 @@ class Ppl:
         """
         path = os.getcwd()
         fname = self.fname.replace(".ppl", "_ppl") + ".xlsx"
-        if len(args) > 0:
+        if len(args) > 0 and args[0] != "":
             path = args[0]
         idxs = self.filter_profiles("")
         xl = pd.ExcelWriter(path + os.sep + fname)
