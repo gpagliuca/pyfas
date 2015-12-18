@@ -1,5 +1,13 @@
 import os
+import pytest
+import xlrd
 from pyfas import Ppl
+
+
+def test_not_a_ppl():
+    with pytest.raises(ValueError) as exeinfo:
+        ppl = Ppl("FC1_rev01.tpl")
+        assert exinfo.value.message == "not a ppl file"
 
 def test_init():
     ppl = Ppl("FC1_rev01.ppl")
@@ -40,11 +48,11 @@ def test_filter():
 def test_to_excel():
     ppl = Ppl("FC1_rev01.ppl")
     ppl.to_excel()
-    assert "data.xlsx" in os.listdir()
-    os.remove("data.xlsx")
-    ppl.to_excel("test.xlsx")
-    assert "test.xlsx" in os.listdir()
-    os.remove("test.xlsx")
-    ppl.to_excel("home.xlsx", "/tmp")
-    assert "home.xlsx" in os.listdir("/tmp")
-    os.remove("/tmp/home.xlsx")
+    assert "FC1_rev01.xlsx" in os.listdir()
+    xl = xlrd.open_workbook("FC1_rev01.xlsx")
+    sh = xl.sheet_by_index(14)
+    assert sh.cell_value(2, 2) == 1.654940e1
+    os.remove("FC1_rev01.xlsx")
+    ppl.to_excel("/tmp")
+    assert "FC1_rev01.xlsx" in os.listdir("/tmp")
+    os.remove("/tmp/FC1_rev01.xlsx")

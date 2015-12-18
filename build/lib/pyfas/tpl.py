@@ -11,6 +11,8 @@ class Tpl:
         """
         Initialize the tpl attributes
         """
+        if fname.endswith(".tpl") == False:
+            raise ValueError("not a tpl file")
         self.fname = fname
         self._attibutes = {}
         self.data = {}
@@ -67,11 +69,9 @@ class Tpl:
         Dump all the data to excel, fname and path can be passed as args
         """
         path = os.getcwd()
-        fname = "data.xlsx"
+        fname = self.fname.replace(".tpl", "") + ".xlsx"
         if len(args) > 0:
-            fname = args[0]
-        if len(args) > 1:
-            path = args[1]
+            path = args[0]
         idxs = self.filter_trends("")
         for idx in idxs:
             self.extract(idx)

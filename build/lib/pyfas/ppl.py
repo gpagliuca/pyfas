@@ -11,6 +11,9 @@ class Ppl:
         """
         Initialize the tpl attributes
         """
+        if fname.endswith(".ppl") == False:
+            print("Erorr, not a ppl file ")
+            raise ValueError("non a ppl file")
         self.fname = fname
         self._attributes = {}
         self._attributes['branch_idx'] = []
@@ -116,16 +119,13 @@ class Ppl:
         Dump all the data to excel, fname and path can be passed as args
         """
         path = os.getcwd()
-        fname = "data.xlsx"
+        fname = self.fname.replace(".ppl", "") + ".xlsx"
         if len(args) > 0:
-            fname = args[0]
-        if len(args) > 1:
-            path = args[1]
+            path = args[0]
         idxs = self.filter_profiles("")
         xl = pd.ExcelWriter(path + os.sep + fname)
         for idx in idxs:
             self.extract(idx)
-
         labels = list(self.filter_profiles("").values())
         for prof in self.data:
             df = pd.DataFrame()
