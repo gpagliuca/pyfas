@@ -3,13 +3,13 @@ TIME PLOT
 INPUT FILE
 'FC1_rev01.inp'
 RESTART FILE
-'FEED_PCCS_update_rev01.rsw'
+'restart.rsw'
 DATE
 '2015-01-15 10:08:04'
 PROJECT
-'PCCS FEED'
+'myproject'
 TITLE
-'Updated Model from the WK PipeSim model'
+'mytitle'
 AUTHOR
 'GP'
 NETWORK
