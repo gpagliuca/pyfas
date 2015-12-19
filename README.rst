@@ -15,7 +15,7 @@ Live demo here (no installation required)
 
 Installation
 ========
-"pip install pyfas"
+  pip install pyfas
 
 Examples
 ========
