@@ -9,5 +9,4 @@ setup(
     url='https://github.com/gpagliuca/pyfas.git',
     license='LICENSE.txt',
     description='Toolbox for FA engineers',
-    long_description=open('README.rst').read(),
 )
