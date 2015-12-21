@@ -8,7 +8,7 @@ At this moment in time the toolbox contains specific classes for tpl, ppl and ta
 
 While some python knowledge is required to really make use of all the functionalities, some pre-defined notebooks can be of help to execute single specific tasks (like dumping all the trends or profiles in an excel spreadsheet). For these notebooks no python knowledge is required.
 
-These utilities have been written for OLGA (version > 6.X) tpl and ppl files but will be extended to Compas if and when something similar will be available
+These utilities have been written for OLGA (version > 6.X) tpl and ppl files but will be extended to Compas if and when something similar (output files)  will be available
 
 Live demo here (no installation required)  
 http://mybinder.org/repo/gpagliuca/pyfas
