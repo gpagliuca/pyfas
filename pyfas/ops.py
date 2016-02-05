@@ -1,5 +1,4 @@
 import numpy as np
-import quantities as pq
 import pyfas as fa
 
 class RU():
