@@ -12,7 +12,6 @@ def test_not_a_tpl():
 def test_init():
     tpl = Tpl("FC1_rev01.tpl")
     assert tpl.fname == "FC1_rev01.tpl"
-    assert int(tpl.time[1]) == 60
 
 def test_attributes():
     tpl = Tpl("FC1_rev01.tpl")
@@ -28,7 +27,7 @@ def test_extraction():
 
 def test_filter():
     tpl = Tpl("FC1_rev01.tpl")
-    PTs = tpl.filter_trends('PT')
+    PTs = tpl.filter_data('PT')
     assert 'PT' in PTs[3]
     assert 'POSITION' in PTs[3]
     assert 'TIEIN' in PTs[3]

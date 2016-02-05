@@ -39,7 +39,7 @@ def test_extraction():
 
 def test_filter():
     ppl = Ppl("FC1_rev01.ppl")
-    PTs = ppl.filter_profiles('PT')
+    PTs = ppl.filter_data('PT')
     assert 'PT' in PTs[4]
     assert 'old_offshore' in PTs[4]
     ppl.profiles
