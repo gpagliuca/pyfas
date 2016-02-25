@@ -178,7 +178,10 @@ class Tab():
         for fluid_idx, fluid in enumerate(self.metadata["fluids"]):
             data[fluid] = {}
             with open(self.fname) as fobj:
-                text = fobj.read().split("!Phase properties")[1+fluid_idx]
+                try:
+                    text = fobj.read().split("!Phase properties")[1+fluid_idx]
+                except IndexError:
+                    text = fobj.read().split("COLUMNS = ")[1+fluid_idx]
                 try:
                     text = text.split("LABEL")[0]
                 except IndexError:
