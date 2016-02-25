@@ -11,7 +11,7 @@ class Tpl:
         """
         Initialize the tpl attributes
         """
-        if fname.endswith(".tpl") == False:
+        if fname.endswith(".tpl") is False:
             raise ValueError("not a tpl file")
         self.fname = fname
         self._attibutes = {}

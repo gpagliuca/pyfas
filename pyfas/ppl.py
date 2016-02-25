@@ -11,8 +11,8 @@ class Ppl:
         """
         Initialize the tpl attributes
         """
-        if fname.endswith(".ppl") == False:
-            print("Erorr, not a ppl file ")
+        if fname.endswith(".ppl") is False:
+            print("Error, not a ppl file ")
             raise ValueError("non a ppl file")
         self.fname = fname
         self._attributes = {}
