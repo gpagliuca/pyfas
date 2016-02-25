@@ -148,7 +148,7 @@ class Tab():
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'PVTTABLE LABEL' in line:
-                    label = re.findall('"\w*"', line)[0].replace('"', '')
+                    label = re.findall("\=[\w\ \"]*\,", line)[0][1:-1]
                     self.metadata["fluids"].append(label)
 
                 if 'PRESSURE = (' in line:

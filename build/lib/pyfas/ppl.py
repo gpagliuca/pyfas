@@ -11,8 +11,8 @@ class Ppl:
         """
         Initialize the tpl attributes
         """
-        if fname.endswith(".ppl") == False:
-            print("Erorr, not a ppl file ")
+        if fname.endswith(".ppl") is False:
+            print("Error, not a ppl file ")
             raise ValueError("non a ppl file")
         self.fname = fname
         self._attributes = {}
@@ -53,7 +53,7 @@ class Ppl:
                                         self._attributes['nvar']+1]):
                 self.time.append(float(line))
 
-    def filter_profiles(self, pattern=''):
+    def filter_data(self, pattern=''):
         """
         Filter available varaibles
         """
@@ -122,11 +122,11 @@ class Ppl:
         fname = self.fname.replace(".ppl", "_ppl") + ".xlsx"
         if len(args) > 0 and args[0] != "":
             path = args[0]
-        idxs = self.filter_profiles("")
+        idxs = self.filter_data("")
         xl = pd.ExcelWriter(path + os.sep + fname)
         for idx in idxs:
             self.extract(idx)
-        labels = list(self.filter_profiles("").values())
+        labels = list(self.filter_data("").values())
         for prof in self.data:
             df = pd.DataFrame()
             df["X"] = self.data[prof][0]

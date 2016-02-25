@@ -11,7 +11,7 @@ class Tpl:
         """
         Initialize the tpl attributes
         """
-        if fname.endswith(".tpl") == False:
+        if fname.endswith(".tpl") is False:
             raise ValueError("not a tpl file")
         self.fname = fname
         self._attibutes = {}
@@ -30,11 +30,8 @@ class Tpl:
                     adj_idx = idx-self._attibutes['CATALOG']-1
                     if adj_idx > 0:
                         self.trends[adj_idx] = line
-        self.time = np.loadtxt(self.fname,
-                               skiprows=self._attibutes['data_idx']+1,
-                               unpack=True, usecols=(0,))
 
-    def filter_trends(self, pattern=''):
+    def filter_data(self, pattern=''):
         """
         Filter available varaibles
         """
@@ -52,6 +49,9 @@ class Tpl:
         """
         Extract a specific varaible
         """
+        self.time = np.loadtxt(self.fname,
+                               skiprows=self._attibutes['data_idx']+1,
+                               unpack=True, usecols=(0,))
         data = np.loadtxt(self.fname,
                           skiprows=self._attibutes['data_idx']+1,
                           unpack=True,
@@ -72,7 +72,7 @@ class Tpl:
         fname = self.fname.replace(".tpl", "_tpl") + ".xlsx"
         if len(args) > 0 and args[0] != "":
             path = args[0]
-        idxs = self.filter_trends("")
+        idxs = self.filter_data("")
         for idx in idxs:
             self.extract(idx)
         df = pd.DataFrame(self.data)
