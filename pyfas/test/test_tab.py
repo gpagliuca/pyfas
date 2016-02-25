@@ -2,6 +2,7 @@ from pyfas import Tab
 
 def test_type():
     fixed_single = Tab("3P_single-fluid_fixed.tab")
+    keyword_single2 = Tab("3P_single-fluid_key2.tab")
     fixed_multiple = Tab("3P_multi-fluid_fixed.tab")
     keyword_single = Tab("3P_single-fluid_key.tab")
     keyword_multiple = Tab("3P_multi-fluid_key.tab")
@@ -9,7 +10,7 @@ def test_type():
     assert fixed_single.tab_type == 'fixed'
     assert fixed_multiple.tab_type == 'fixed'
     assert keyword_single.tab_type == 'keyword'
-    # assert keyword_multiple.tab_type == 'keyword'
+    assert keyword_multiple.tab_type == 'keyword'
 
 def test_fixed_multiple():
     tab = Tab("3P_multi-fluid_fixed.tab")
@@ -36,4 +37,11 @@ def test_keyword_multiple():
     assert tab.metadata["nfluids"] == 3
     tab.export_all()
     assert tab.metadata["properties"][3] == "ROHL"
+
+def test_keyword_single2():
+    tab = Tab("3P_single-fluid_key2.tab")
+    assert tab.metadata["properties"][2] == " ROG"
+    assert tab.metadata["nfluids"] == 1
+    tab.export_all()
+    assert tab.data.values[9][0][2] == 2.01195861
 
