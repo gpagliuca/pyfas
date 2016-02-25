@@ -40,8 +40,9 @@ def test_keyword_multiple():
 
 def test_keyword_single2():
     tab = Tab("3P_single-fluid_key2.tab")
-    assert tab.metadata["properties"][2] == " ROG"
+    assert tab.metadata["properties"][2] == "ROG"
     assert tab.metadata["nfluids"] == 1
     tab.export_all()
     assert tab.data.values[9][0][2] == 2.01195861
+    assert tab.metadata['properties'][-1] == 'SEHL'
 
