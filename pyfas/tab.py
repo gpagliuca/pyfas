@@ -163,7 +163,7 @@ class Tab():
                                                 [float(val) for val in vals])
                 if 'COLUMNS = (' in line:
                     line = line.split('=')[1].replace(" ", "").\
-                           replace(' (', '').replace(')\n', '')
+                           replace('(', '').replace(')\n', '')
                     self.metadata['properties'] = line.split(',')
             self.metadata["t_points"] = len(self.metadata["t_array"])
             self.metadata["p_points"] = len(self.metadata["p_array"])
@@ -187,7 +187,7 @@ class Tab():
                     text = text.split("LABEL")[0]
                 except IndexError:
                     pass
-                values = re.findall("[\.\d]+[\.\deE\+\-]+", text)
+                values = re.findall("[\.\d\-]+[\.\deE\+\-]+", text)
             nprops = len(self.metadata["properties"])
             for idx, prop in enumerate(self.metadata["properties"]):
                 data[fluid][prop] = [float(x) for x in values[idx::nprops]]
