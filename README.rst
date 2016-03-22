@@ -11,7 +11,7 @@ While some python knowledge is required to really make use of all the functional
 These utilities have been written for OLGA (version > 6.X) tpl and ppl files but will be extended to Compas if and when something similar (output files)  will be available
 
 Live demo here (no installation required)  
-http://mybinder.org/repo/gpagliuca/pyfas
+.. image:: http://mybinder.org/badge.svg :target: http://mybinder.org/repo/gpagliuca/pyfas
 
 Installation
 ========
