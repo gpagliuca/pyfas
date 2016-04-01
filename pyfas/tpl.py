@@ -61,7 +61,7 @@ class Tpl:
                 if idx == 1 + variable_idx+self._attibutes['CATALOG']:
                     metadata = line
                     break
-        self.data[variable_idx] = data
+        self.data[variable_idx] = data[:len(self.time)]
         self.label[variable_idx] = line.replace("\'", '').replace("\n", "")
 
     def to_excel(self, *args):

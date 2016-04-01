@@ -18,7 +18,6 @@ setup(
         'pandas',
         'matplotlib',
         'pytest',
-        'quantities'
         'openpyxl'
     ]
 )

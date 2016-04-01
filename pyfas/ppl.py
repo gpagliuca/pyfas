@@ -9,7 +9,7 @@ class Ppl:
     """
     def __init__(self, fname):
         """
-        Initialize the tpl attributes
+        Initialize the ppl attributes
         """
         if fname.endswith(".ppl") is False:
             print("Error, not a ppl file ")
