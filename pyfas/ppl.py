@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 import numpy as np
 
@@ -67,7 +68,8 @@ class Ppl:
         return filtered_profiles
 
     def _define_branch(self, variable_idx):
-        return self.profiles[variable_idx].split(' ')[3].replace("\'", '')
+        return re.findall("'[\w\ \:\-]*'", \
+                          self.profiles[variable_idx])[2].replace("'", "")
 
     def extract_geometry(self, branch, branch_begin):
         """
