@@ -40,11 +40,11 @@ class Ppl:
             self._attributes['nvar'] = int(fobj.readlines()[nvar_idx])
         self._time_series()
         with open(self.fname) as fobj:
-            for branch_idx in self._attributes['branch_idx']:
-                branch_raw = fobj.readlines()[branch_idx]
-                branch = branch_raw.replace("\'", '').replace("\n", '')
-                fobj.seek(0)
-                self.extract_geometry(branch, branch_idx+2)
+            text = fobj.readlines()
+        for branch_idx in self._attributes['branch_idx']:
+            branch_raw = text[branch_idx]
+            branch = branch_raw.replace("\'", '').replace("\n", '')
+            self.extract_geometry(branch, branch_idx+2)
 
     def _time_series(self):
         with open(self.fname) as fobj:
