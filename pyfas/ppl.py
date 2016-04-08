@@ -14,7 +14,7 @@ class Ppl:
         """
         if fname.endswith(".ppl") is False:
             print("Error, not a ppl file ")
-            raise ValueError("non a ppl file")
+            raise ValueError("not a ppl file")
         self.fname = fname
         self._attributes = {}
         self._attributes['branch_idx'] = []
