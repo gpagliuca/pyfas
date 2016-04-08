@@ -1,4 +1,4 @@
-=========== Pyfas - FA tools ===========
+# Pyfas
 
 Pyfas is a python toolbox for flow assurance engineers.
 
@@ -20,13 +20,11 @@ These utilities have been written for OLGA (version > 6.X) tpl and ppl files
 but will be extended to Compas if and when something similar (output files)
 will be available
 
-Live demo here (no installation required)
-http://mybinder.org/repo/gpagliuca/pyfas
+A live demo should be available [here](http://mybinder.org/repo/gpagliuca/pyfas) (no installation required)
 
-Installation ======== pip install pyfas
+# Installation 
+`pip install pyfas`
 
-Examples ========
+# Examples
 
 Examples and howto are provided in the notebook folder
-
-
