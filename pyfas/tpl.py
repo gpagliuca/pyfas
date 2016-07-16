@@ -1,3 +1,7 @@
+"""
+Tpl class
+"""
+
 import os
 import numpy as np
 import pandas as pd
@@ -18,6 +22,7 @@ class Tpl:
         self.data = {}
         self.label = {}
         self.trends = {}
+        self.time = ""
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'CATALOG' in line:
@@ -59,10 +64,11 @@ class Tpl:
         with open(self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if idx == 1 + variable_idx+self._attibutes['CATALOG']:
-                    metadata = line
+                    self.data[variable_idx] = data[:len(self.time)]
+                    self.label[variable_idx] = line.replace("\'",
+                                                            '').replace("\n",
+                                                                        "")
                     break
-        self.data[variable_idx] = data[:len(self.time)]
-        self.label[variable_idx] = line.replace("\'", '').replace("\n", "")
 
     def to_excel(self, *args):
         """
@@ -75,7 +81,7 @@ class Tpl:
         idxs = self.filter_data("")
         for idx in idxs:
             self.extract(idx)
-        df = pd.DataFrame(self.data)
-        df.columns = self.label.values()
-        df.insert(0, "Time [s]", self.time)
-        df.to_excel(path + os.sep + fname)
+        data_df = pd.DataFrame(self.data)
+        data_df.columns = self.label.values()
+        data_df.insert(0, "Time [s]", self.time)
+        data_df.to_excel(path + os.sep + fname)
