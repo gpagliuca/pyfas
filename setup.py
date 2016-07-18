@@ -2,11 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pyfas',
-<<<<<<< HEAD
-    version='0.1.6',
-=======
     version='0.1.8',
->>>>>>> master
     author='Giuseppe Pagliuca',
     author_email='giuseppe.pagliuca@gmail.com',
     packages=['pyfas'],
