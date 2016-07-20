@@ -20,7 +20,7 @@ These utilities have been written for OLGA (version > 6.X) tpl and ppl files
 but will be extended to Compas if and when something similar (output files)
 will be available
 
-A live demo should be available (no installation required)
+A live demo should be available here below (no installation required)
 
 [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org:/repo/gpagliuca/pyfas)
 
