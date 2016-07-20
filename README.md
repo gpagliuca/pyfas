@@ -20,7 +20,9 @@ These utilities have been written for OLGA (version > 6.X) tpl and ppl files
 but will be extended to Compas if and when something similar (output files)
 will be available
 
-A live demo should be available [here](http://mybinder.org/repo/gpagliuca/pyfas) (no installation required)
+A live demo should be available (no installation required)
+
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org:/repo/gpagliuca/pyfas)
 
 # Installation 
 `pip install pyfas`
@@ -29,4 +31,4 @@ A live demo should be available [here](http://mybinder.org/repo/gpagliuca/pyfas)
 
 Examples and howto are provided in the notebook folder
 
-[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org:/repo/gpagliuca/pyfas)
+
