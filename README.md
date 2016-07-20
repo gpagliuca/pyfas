@@ -28,3 +28,5 @@ A live demo should be available [here](http://mybinder.org/repo/gpagliuca/pyfas)
 # Examples
 
 Examples and howto are provided in the notebook folder
+
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org:/repo/gpagliuca/pyfas)
