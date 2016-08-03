@@ -16,7 +16,7 @@ class Tab():
     def __init__(self, fname):
         try:
             self.fname = fname.split(os.sep)[-1]
-            self.path = fname.split(os.sep)[0]
+            self.path = os.sep.join(fname.split(os.sep)[:-1])
         except IndexError:
             self.fname = fname
             self.path = ''

@@ -5,7 +5,7 @@ import xlrd
 import tempfile
 from pyfas import Tpl
 
-TEST_FLD = "test_files"
+TEST_FLD = os.getcwd() + os.sep + "test_files" + os.sep
 
 def test_not_a_tpl():
     with pytest.raises(ValueError) as exeinfo:
@@ -13,9 +13,9 @@ def test_not_a_tpl():
         assert exinfo.value.message == "not a tpl file"
 
 def test_init():
-    tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
+    tpl = Tpl(TEST_FLD+"FC1_rev01.tpl")
     assert tpl.fname == "FC1_rev01.tpl"
-    assert tpl.path == TEST_FLD
+    assert tpl.path == TEST_FLD[:-1]
 
 def test_attributes():
     tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
