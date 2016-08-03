@@ -1,6 +1,7 @@
 import os
 import pytest
-from pyfas import Usc
+if os.name == 'nt':
+    from pyfas import Usc
 
 TEST_FLD = os.getcwd() + os.sep + "test_files" + os.sep
 
