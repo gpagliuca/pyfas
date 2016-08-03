@@ -43,9 +43,9 @@ def test_to_excel():
     assert sh.cell_value(3, 4) == 9.973300e+06
     os.remove("FC1_rev01_tpl.xlsx")
     if os.name == 'posix':
-        temp_foler = "/tmp"
+        temp_folder = "/tmp"
     if os.name == 'nt':
-        temp_foler = "%TEMP%"
-    tpl.to_excel(temp_foler)
-    assert "FC1_rev01_tpl.xlsx" in os.listdir(temp_foler)
-    os.remove(temp_foler+"/FC1_rev01_tpl.xlsx")
+        temp_folder = "%TEMP%"
+    tpl.to_excel(temp_folder)
+    assert "FC1_rev01_tpl.xlsx" in os.listdir(temp_folder)
+    os.remove(temp_folder+"/FC1_rev01_tpl.xlsx")
