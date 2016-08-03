@@ -1,6 +1,7 @@
 import os
 import pytest
 import xlrd
+import tempfile
 from pyfas import Ppl
 
 
@@ -53,6 +54,7 @@ def test_to_excel():
     sh = xl.sheet_by_index(14)
     assert sh.cell_value(2, 2) == 1.654940e1
     os.remove("FC1_rev01_ppl.xlsx")
-    ppl.to_excel("/tmp")
-    assert "FC1_rev01_ppl.xlsx" in os.listdir("/tmp")
-    os.remove("/tmp/FC1_rev01_ppl.xlsx")
+    temp_folder = tempfile.gettempdir()
+    ppl.to_excel(temp_folder)
+    assert "FC1_rev01_ppl.xlsx" in os.listdir(temp_folder)
+    os.remove(temp_folder+"/FC1_rev01_ppl.xlsx")

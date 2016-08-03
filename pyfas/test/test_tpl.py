@@ -2,6 +2,7 @@ import os
 import sys
 import pytest
 import xlrd
+import tempfile
 from pyfas import Tpl
 
 def test_not_a_tpl():
@@ -42,10 +43,7 @@ def test_to_excel():
     sh = xl.sheet_by_index(0)
     assert sh.cell_value(3, 4) == 9.973300e+06
     os.remove("FC1_rev01_tpl.xlsx")
-    if os.name == 'posix':
-        temp_folder = "/tmp"
-    if os.name == 'nt':
-        temp_folder = "%TEMP%"
+    temp_folder = tempfile.gettempdir()
     tpl.to_excel(temp_folder)
     assert "FC1_rev01_tpl.xlsx" in os.listdir(temp_folder)
     os.remove(temp_folder+"/FC1_rev01_tpl.xlsx")
