@@ -1,5 +1,5 @@
 """
-Pppl class
+Ppl class
 """
 
 import os
@@ -19,14 +19,19 @@ class Ppl:
         if fname.endswith(".ppl") is False:
             print("Error, not a ppl file ")
             raise ValueError("not a ppl file")
-        self.fname = fname
+        try:
+            self.fname = fname.split(os.sep)[-1]
+            self.path = fname.split(os.sep)[0]
+        except IndexError:
+            self.fname = fname
+            self.path = ''
         self._attributes = {}
         self._attributes['branch_idx'] = []
         self.data = {}
         self.label = {}
         self.profiles = {}
         self.geometries = {}
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'CATALOG' in line:
                     self._attributes['CATALOG'] = idx
@@ -40,10 +45,10 @@ class Ppl:
                         self.profiles[adj_idx] = line
                 if 'BRANCH\n' in line:
                     self._attributes['branch_idx'].append(idx+1)
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             self._attributes['nvar'] = int(fobj.readlines()[nvar_idx])
         self._time_series()
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             text = fobj.readlines()
         for branch_idx in self._attributes['branch_idx']:
             branch_raw = text[branch_idx]
@@ -51,7 +56,7 @@ class Ppl:
             self.extract_geometry(branch, branch_idx+2)
 
     def _time_series(self):
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             self.time = []
             for line in fobj.readlines()[1+self._attributes['data_idx']::
                                          self._attributes['nvar']+1]:
@@ -62,7 +67,7 @@ class Ppl:
         Filter available varaibles
         """
         filtered_profiles = {}
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'TIME SERIES' in line:
                     break
@@ -79,7 +84,7 @@ class Ppl:
         It adds to self.geometries a specific geometry as (x, y)
         """
         raw_geometry = []
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for line in fobj.readlines()[branch_begin:]:
                 points = []
                 for point in line.split(' '):
@@ -102,7 +107,7 @@ class Ppl:
         label = self.profiles[variable_idx].replace("\n", "")
         self.label[variable_idx] = label
         self.data[variable_idx] = [[], []]
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for line in fobj.readlines()[
                     variable_idx+1+self._attributes['data_idx']::
                     self._attributes['nvar']+1]:
@@ -128,6 +133,8 @@ class Ppl:
         fname = self.fname.replace(".ppl", "_ppl") + ".xlsx"
         if len(args) > 0 and args[0] != "":
             path = args[0]
+            if os.path.exists(path) == False:
+                os.mkdir(path)
         xl_file = pd.ExcelWriter(path + os.sep + fname)
         for idx in self.filter_data(""):
             self.extract(idx)

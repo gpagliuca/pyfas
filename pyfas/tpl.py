@@ -17,13 +17,18 @@ class Tpl:
         """
         if fname.endswith(".tpl") is False:
             raise ValueError("not a tpl file")
-        self.fname = fname
+        try:
+            self.fname = fname.split(os.sep)[-1]
+            self.path = fname.split(os.sep)[0]
+        except IndexError:
+            self.fname = fname
+            self.path = ''
         self._attibutes = {}
         self.data = {}
         self.label = {}
         self.trends = {}
         self.time = ""
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if 'CATALOG' in line:
                     self._attibutes['CATALOG'] = idx
@@ -41,7 +46,7 @@ class Tpl:
         Filter available varaibles
         """
         filtered_trends = {}
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 variable_idx = idx-self._attibutes['CATALOG']-1
                 if 'TIME SERIES' in line:
@@ -54,14 +59,14 @@ class Tpl:
         """
         Extract a specific varaible
         """
-        self.time = np.loadtxt(self.fname,
+        self.time = np.loadtxt(self.path+os.sep+self.fname,
                                skiprows=self._attibutes['data_idx']+1,
                                unpack=True, usecols=(0,))
-        data = np.loadtxt(self.fname,
+        data = np.loadtxt(self.path+os.sep+self.fname,
                           skiprows=self._attibutes['data_idx']+1,
                           unpack=True,
                           usecols=(variable_idx,))
-        with open(self.fname) as fobj:
+        with open(self.path+os.sep+self.fname) as fobj:
             for idx, line in enumerate(fobj):
                 if idx == 1 + variable_idx+self._attibutes['CATALOG']:
                     self.data[variable_idx] = data[:len(self.time)]
@@ -76,12 +81,17 @@ class Tpl:
         """
         path = os.getcwd()
         fname = self.fname.replace(".tpl", "_tpl") + ".xlsx"
-        if len(args) > 0 and args[0] != "":
-            path = args[0]
         idxs = self.filter_data("")
         for idx in idxs:
             self.extract(idx)
         data_df = pd.DataFrame(self.data)
         data_df.columns = self.label.values()
         data_df.insert(0, "Time [s]", self.time)
-        data_df.to_excel(path + os.sep + fname)
+        if len(args) > 0 and args[0] != "":
+            path = args[0]
+            if os.path.exists(path) == False:
+                os.mkdir(path)
+            data_df.to_excel(path + os.sep + fname)
+        else:
+            data_df.to_excel(self.path + os.sep + fname)
+
