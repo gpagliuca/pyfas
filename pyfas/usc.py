@@ -33,6 +33,21 @@ PROFILE_LENGTH_NON_ST = 'CellAccumulatedLengthString'
 PROFILE_LENGTH_ST = 'CellAccumulatedLength1String'
 PROFILE_TIME = 'HistoricalTimesString'
 
+def unisim_csv_formatting(path, fname):
+    with open(path+fname, 'r') as fobj:
+        data = fobj.readlines()
+        header = data[9].split(",")[:-1]
+        UoMs = data[10].split(",")[:-1]
+    df = pd.read_csv(path+fname, 
+                     skiprows=10, 
+                     index_col=0,
+                     usecols=(range(0, len(header))),
+                     na_values=('Shutdown', 'Bad', 'I/O Timeout', 'Scan Timeout'),
+                    )
+    df.columns = header[1:]
+    df.unit = UoMs[1:]
+    return df
+
 class Usc:
     def __init__(self, fname):
         self.case = GetObject(os.path.abspath(fname))
@@ -65,7 +80,7 @@ class Usc:
         self.case.visible = False
         os.remove(self.path + scp_fname)
         if expose_data == True:
-            self.stripcharts[stripchart_name] = unisim_csv_formatting(csv_fname, path=self.path)
+            self.stripcharts[stripchart_name] = unisim_csv_formatting(self.path, csv_fname)
         if os.path.isdir(self.path+'trends') != True:
             os.mkdir(self.path + 'trends')
         target_dir = self.path + 'trends'
