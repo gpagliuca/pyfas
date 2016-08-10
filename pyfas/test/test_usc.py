@@ -38,6 +38,7 @@ def test_extraction_stripchart_no_exposed_data():
     assert df.index[-1] == 19980.5
     assert df.UoMs[1] == '[kg/h]'
     os.remove('./test_files/trends/overall.csv')
+    os.rmdir('./test_files/trends')
 
 
 @oscheck
@@ -48,3 +49,33 @@ def test_extraction_stripchart_exposed_data():
     assert df['outlet - Mass Flow'].values[1] == 31439.8
     assert df.index[-1] == 19980.5
     os.remove('./test_files/trends/overall.csv')
+    os.rmdir('./test_files/trends')
+    usc.close()
+
+@oscheck
+def test_profile_extraction_no_exposed_data():
+    usc = Usc(TEST_FLD+"test_case_pipe.usc")
+    usc.extract_profiles('op-100', expose_data=False)
+    df = pd.read_csv('./test_files/profiles/op-100-oil_massflow.csv',
+                     index_col=0,
+                     na_values=('Shutdown', 'Bad', 'I/O Timeout', 'Scan Timeout'),
+                    )
+    assert df.index[-2] == '1078 m'
+    assert round(df['60.00 min'].values[10], 13) == 6.6632257001663
+    assert 'op-100-wat_massflow.csv' in os.listdir('./test_files/profiles')
+    path_profiles =  './test_files/profiles'
+    [os.remove(path_profiles+os.sep+f) for f in os.listdir(path_profiles)] 
+    os.rmdir('./test_files/profiles')
+    usc.close()
+
+@oscheck
+def test_profile_extraction_exposed_data():
+    usc = Usc(TEST_FLD+"test_case_pipe.usc")
+    usc.extract_profiles('op-100', expose_data=True)
+    path_profiles =  './test_files/profiles'
+    df =  usc.profiles['op-100']['oil_massflow']
+    assert round(df['60.00 min'].values[10], 13) == 6.6632257001663
+    assert df.index[-2] == '1078 m'
+    [os.remove(path_profiles+os.sep+f) for f in os.listdir(path_profiles)] 
+    os.rmdir('./test_files/profiles')
+    usc.close()
