@@ -79,3 +79,11 @@ def test_profile_extraction_exposed_data():
     [os.remove(path_profiles+os.sep+f) for f in os.listdir(path_profiles)] 
     os.rmdir('./test_files/profiles')
     usc.close()
+
+@oscheck
+def test_save():
+    usc = Usc(TEST_FLD+"test_case_pipe.usc")
+    usc.save()
+    usc.save('save_test.usc')
+    usc.close()
+    os.remove('./test_files/save_test.usc')

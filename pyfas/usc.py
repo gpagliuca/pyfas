@@ -146,11 +146,14 @@ class Usc:
         if save is True:
             self.case.save()
 
-    def save(self):
+    def save(self, fname=''):
         """
         Save the current case
         """
-        self.case.save()
+        if fname is '':
+            self.case.save()
+        else:
+            self.case.SaveAs(self.path+os.sep+fname)
 
     def close(self):
         """
