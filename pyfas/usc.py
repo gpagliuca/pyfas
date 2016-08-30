@@ -62,6 +62,7 @@ class Usc:
         self.case = GetObject(os.path.abspath(fname))
         self.fname = self.case.FullName
         self.integrator = self.case.solver.Integrator
+        self.solver = self.case.solver
         self.current_time = self.case.solver.Integrator.currenttimevalue
         self.path = self.case.path
         self.flsh = self.case.flowsheet
