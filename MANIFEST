@@ -6,3 +6,4 @@ pyfas/pilink.py
 pyfas/ppl.py
 pyfas/tab.py
 pyfas/tpl.py
+pyfas/usc.py
