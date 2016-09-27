@@ -14,12 +14,12 @@ class Tab():
     API for the tab files
     """
     def __init__(self, fname):
-        try:
-            self.fname = fname.split(os.sep)[-1]
-            self.path = os.sep.join(fname.split(os.sep)[:-1])
-        except IndexError:
-            self.fname = fname
-            self.path = ''
+        self.fname = fname.split(os.sep)[-1]
+        self.path = os.sep.join(fname.split(os.sep)[:-1])
+        if self.path == '':
+            self.abspath = self.fname
+        else:
+            self.abspath = self.path+os.sep+self.fname
         self.tab_type = self._tab_type()
         self.metadata = {'nfluids': 0, 'fluids': [], 'properties': [],
                          't_points': [], 'p_points': [],
@@ -33,7 +33,7 @@ class Tab():
         """
         Private method to define the tab type
         """
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             contents = fobj.readlines()
             for line in contents:
                 if 'COMPONENTS' in line:
@@ -48,7 +48,7 @@ class Tab():
         # Number of fluids and index of all the phisical properties
         fluids = {}
         props_idx = {}
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             contents = fobj.readlines()
             for idx, line in enumerate(contents):
                 if re.findall(r"\'[\w \-\,]*\'", line):
@@ -75,7 +75,7 @@ class Tab():
             self.metadata['p_points'].append(int(p_points))
             self.metadata['fluids'].append(fluid)
             # t and p arrays definition
-            with open(self.path+os.sep+self.fname) as fobj:
+            with open(self.abspath) as fobj:
                 contents = fobj.readlines()
                 if len(re.findall(r'[\w+\-\.]+', contents[2])) == 2 and\
                    len(re.findall(r'[\w+\-\.]+', contents[3])) == 2:
@@ -119,7 +119,7 @@ class Tab():
         Private method for a single extraction on a fixed-type tab file
         """
         myarray = np.array([])
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             contents = fobj.readlines()[idx+extra_idx:]
             for line in contents:
                 try:
@@ -155,7 +155,7 @@ class Tab():
         """
         Define the most important tab parameters for a keyword-type tab file
         """
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             for line in fobj:
                 if 'PVTTABLE LABEL' in line:
                     label = re.findall(r"\=[\w\ \"]*\,", line)[0][1:-1]
@@ -187,7 +187,7 @@ class Tab():
         data = {}
         for fluid_idx, fluid in enumerate(self.metadata["fluids"]):
             data[fluid] = {}
-            with open(self.path+os.sep+self.fname) as fobj:
+            with open(self.abspath) as fobj:
                 text = fobj.read()
                 try:
                     text = text.split("!Phase properties")[1+fluid_idx]

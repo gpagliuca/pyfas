@@ -12,6 +12,11 @@ def test_not_a_tpl():
         tpl = Tpl(TEST_FLD+"/FC1_rev01.ppl")
         assert exinfo.value.message == "not a tpl file"
 
+def test_init_same_folder():
+    tpl = Tpl("tpl_file.tpl")
+    assert tpl.path == ''
+    assert tpl.fname == "tpl_file.tpl"
+
 def test_init():
     tpl = Tpl(TEST_FLD+"FC1_rev01.tpl")
     assert tpl.fname == "FC1_rev01.tpl"

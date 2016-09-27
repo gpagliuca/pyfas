@@ -22,7 +22,7 @@ class Tpl:
             self.path = os.sep.join(fname.split(os.sep)[:-1])
         except IndexError:
             self.fname = fname
-            self.path = ''
+            self.path = 'test'
         self._attibutes = {}
         self.data = {}
         self.label = {}

@@ -17,18 +17,18 @@ class Tpl:
         """
         if fname.endswith(".tpl") is False:
             raise ValueError("not a tpl file")
-        try:
-            self.fname = fname.split(os.sep)[-1]
-            self.path = os.sep.join(fname.split(os.sep)[:-1])
-        except IndexError:
-            self.fname = fname
-            self.path = ''
+        self.fname = fname.split(os.sep)[-1]
+        self.path = os.sep.join(fname.split(os.sep)[:-1])
+        if self.path == '':
+            self.abspath = self.fname
+        else:
+            self.abspath = self.path+os.sep+self.fname
         self._attibutes = {}
         self.data = {}
         self.label = {}
         self.trends = {}
         self.time = ""
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             for idx, line in enumerate(fobj):
                 if 'CATALOG' in line:
                     self._attibutes['CATALOG'] = idx
@@ -46,7 +46,7 @@ class Tpl:
         Filter available varaibles
         """
         filtered_trends = {}
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             for idx, line in enumerate(fobj):
                 variable_idx = idx-self._attibutes['CATALOG']-1
                 if 'TIME SERIES' in line:
@@ -59,14 +59,14 @@ class Tpl:
         """
         Extract a specific varaible
         """
-        self.time = np.loadtxt(self.path+os.sep+self.fname,
+        self.time = np.loadtxt(self.abspath,
                                skiprows=self._attibutes['data_idx']+1,
                                unpack=True, usecols=(0,))
-        data = np.loadtxt(self.path+os.sep+self.fname,
+        data = np.loadtxt(self.abspath,
                           skiprows=self._attibutes['data_idx']+1,
                           unpack=True,
                           usecols=(variable_idx,))
-        with open(self.path+os.sep+self.fname) as fobj:
+        with open(self.abspath) as fobj:
             for idx, line in enumerate(fobj):
                 if idx == 1 + variable_idx+self._attibutes['CATALOG']:
                     self.data[variable_idx] = data[:len(self.time)]

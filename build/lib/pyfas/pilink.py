@@ -21,7 +21,8 @@ def PI_read(server, tag, start=None, end=None, frequency=None):
         # returns a range of values (average)
         time_start.InputString = start.strftime('%m-%d-%Y %H:%M:%S')
         time_end.InputString = end.strftime('%m-%d-%Y %H:%M:%S')
-        sample_values = sample_point.Data.Summaries2(time_start, time_end, frequency, 5, 0, None)
+        sample_values = sample_point.Data.Summaries2(time_start, time_end, 
+                                                     frequency, 5, 0, None)
         values = sample_values('Average').Value
         data = np.array([x.Value for x in values])
     elif start != None and end == None:
@@ -29,7 +30,8 @@ def PI_read(server, tag, start=None, end=None, frequency=None):
         end = start + timedelta(seconds=1)
         time_start.InputString = start.strftime('%m-%d-%Y %H:%M:%S')
         time_end.InputString = end.strftime('%m-%d-%Y %H:%M:%S')
-        sample_values = sample_point.Data.Summaries2(time_start, time_end, frequency, 5, 0, None)
+        sample_values = sample_point.Data.Summaries2(time_start, time_end, 
+                                                     frequency, 5, 0, None)
         values = sample_values('Average').Value
         data = [x.Value for x in values][0]
     else:
