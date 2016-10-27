@@ -24,8 +24,8 @@ def test_init():
 
 def test_attributes():
     tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
-    assert tpl._attibutes['CATALOG'] == 331
-    assert tpl._attibutes['data_idx'] == 421
+    assert tpl._attributes['CATALOG'] == 331
+    assert tpl._attributes['data_idx'] == 421
     assert 'VOLGB' in tpl.trends[1]
 
 def test_extraction():
