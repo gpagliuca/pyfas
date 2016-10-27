@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pyfas',
-    version='0.2.1',
+    version='0.2.2',
     author='Giuseppe Pagliuca',
     author_email='giuseppe.pagliuca@gmail.com',
     packages=['pyfas'],
@@ -18,6 +18,7 @@ setup(
         'pandas',
         'matplotlib',
         'pytest',
-        'openpyxl'
+        'openpyxl',
+        'quantities',
     ]
 )
