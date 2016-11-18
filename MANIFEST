@@ -2,6 +2,7 @@
 setup.py
 pyfas/__init__.py
 pyfas/genkey.py
+pyfas/gists.py
 pyfas/pilink.py
 pyfas/ppl.py
 pyfas/tab.py
