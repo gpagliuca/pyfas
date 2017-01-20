@@ -56,4 +56,3 @@ A live demo should be available here below (no installation required)
 # Examples and documentation
 
 [![Documentation Status](https://readthedocs.org/projects/pyfas/badge/?version=latest)](http://pyfas.readthedocs.io/en/latest/?badge=latest)
-
