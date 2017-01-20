@@ -1,3 +1,6 @@
+[![Documentation Status](https://readthedocs.org/projects/pyfas/badge/?version=latest)](http://pyfas.readthedocs.io/en/latest/?badge=latest)
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org:/repo/gpagliuca/pyfas)
+
 # Pyfas
 
 Pyfas is a python toolbox for flow assurance engineers.
@@ -50,8 +53,7 @@ A live demo should be available here below (no installation required)
 # Installation 
 `pip install pyfas`
 
-# Examples
+# Examples and documentation
 
-Examples and howto are provided in the notebook folder
-
+[![Documentation Status](https://readthedocs.org/projects/pyfas/badge/?version=latest)](http://pyfas.readthedocs.io/en/latest/?badge=latest)
 
