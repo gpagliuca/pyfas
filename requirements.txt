@@ -3,3 +3,4 @@ jupyter>=1.0.0
 pyfas>=0.1.0
 ipython>=4.0
 quantities>=0.11.1
+nbsphinx>=0.2
