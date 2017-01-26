@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# pyfas documentation build configuration file, created by
-# sphinx-quickstart on Fri Jan 20 16:01:14 2017.
+# Pyfas documentation build configuration file, created by
+# sphinx-quickstart on Tue Jan 24 11:31:38 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -31,10 +31,7 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'nbsphinx']
+extensions = ['sphinx.ext.mathjax', 'nbsphinx']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -49,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'pyfas'
+project = 'Pyfas'
 copyright = '2017, Giuseppe Pagliuca'
 author = 'Giuseppe Pagliuca'
 
@@ -72,7 +69,8 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store',
+                    '**ipynb_checkpoints']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -86,7 +84,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'classic'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -103,7 +101,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'pyfasdoc'
+htmlhelp_basename = 'Pyfasdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -130,7 +128,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'pyfas.tex', 'pyfas Documentation',
+    (master_doc, 'Pyfas.tex', 'Pyfas Documentation',
      'Giuseppe Pagliuca', 'manual'),
 ]
 
@@ -140,7 +138,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pyfas', 'pyfas Documentation',
+    (master_doc, 'pyfas', 'Pyfas Documentation',
      [author], 1)
 ]
 
@@ -151,8 +149,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'pyfas', 'pyfas Documentation',
-     author, 'pyfas', 'One line description of project.',
+    (master_doc, 'Pyfas', 'Pyfas Documentation',
+     author, 'Pyfas', 'One line description of project.',
      'Miscellaneous'),
 ]
 

@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Survival miniguide &#8212; pyfas 0.2.3 documentation</title>
+    <title>Survival miniguide &#8212; Pyfas 0.2.3 documentation</title>
     
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,16 +27,21 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="Read data from PI.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
+    <link rel="prev" title="&lt;no title&gt;" href="Read data from PI.html" /> 
   </head>
   <body role="document">
-  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Read data from PI.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -109,7 +114,7 @@ div.nboutput div.prompt pre {
 /* all prompts */
 div.nbinput div.prompt,
 div.nboutput div.prompt {
-    min-width: 9ex;
+    min-width: 7ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
@@ -272,7 +277,7 @@ in a shell: &gt; cd /path_to_your/working_folder/</p>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="c1"># Filename text widget</span>
-<span class="n">fname_wdt</span> <span class="o">=</span> <span class="n">wgt</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">r&quot;FC1_rev01.tpl&quot;</span> <span class="p">)</span>
+<span class="n">fname_wdt</span> <span class="o">=</span> <span class="n">wgt</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;FC1_rev01.tpl&quot;</span> <span class="p">)</span>
 <span class="n">fname_wdt</span>
 </pre></div>
 </div>
@@ -643,7 +648,7 @@ temperature:</p>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [h]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">p1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tpl</span><span class="o">.</span><span class="n">time</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="n">tpl</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="o">/</span><span class="mi">1</span><span class="n">e5</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">p1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tpl</span><span class="o">.</span><span class="n">time</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="n">tpl</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="o">/</span><span class="mf">1e5</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Inlet P [bara]&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
@@ -667,9 +672,9 @@ Using matplotlib backend: nbAgg
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="480aa1f3-b4c8-4989-a068-fd0261a63f45"></div>
+<div id="2b953067-d4fc-4641-b646-4f53ca44d551"></div>
 <script type="text/javascript">
-var element = document.getElementById('480aa1f3-b4c8-4989-a068-fd0261a63f45');
+var element = document.getElementById('2b953067-d4fc-4641-b646-4f53ca44d551');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -1442,7 +1447,6 @@ if (IPython.notebook.kernel != null) {
 </pre></div>
 </div>
 </div>
-<hr class="docutils" />
 </div>
 </div>
 
@@ -1463,14 +1467,10 @@ if (IPython.notebook.kernel != null) {
 </ul>
 </li>
 </ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Read data from PI.html" title="previous chapter">&lt;no title&gt;</a></li>
-  </ul></li>
-</ul>
-</div>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Read data from PI.html"
+                        title="previous chapter">&lt;no title&gt;</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1492,20 +1492,21 @@ if (IPython.notebook.kernel != null) {
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2017, Giuseppe Pagliuca.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
-      
-      |
-      <a href="../_sources/notebooks/Tpl - Examples and howto.ipynb.txt"
-          rel="nofollow">Page source</a>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Read data from PI.html" title="&lt;no title&gt;"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
     </div>
-
-    
-
-    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Giuseppe Pagliuca.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
   </body>
 </html>

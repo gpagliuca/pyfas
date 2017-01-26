@@ -186,15 +186,6 @@
     "#     case = fa.Ppl(fobj)\n",
     "# ppl.to_excel()"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "collapsed": true
-   },
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {
@@ -214,7 +205,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.4.3"
+   "version": "3.5.1+"
   }
  },
  "nbformat": 4,
