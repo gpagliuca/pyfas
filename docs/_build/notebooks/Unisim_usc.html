@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. Unisim usc files &#8212; Pyfas 0.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Tab files" href="Tab_files.html" />
+    <link rel="prev" title="4. OLGA ppl files, examples and howto" href="OLGA_ppl.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Tab_files.html" title="6. Tab files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="OLGA_ppl.html" title="4. OLGA ppl files, examples and howto"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="Unisim-usc-files">
+<h1>5. Unisim usc files<a class="headerlink" href="#Unisim-usc-files" title="Permalink to this headline">¶</a></h1>
+<p>Unisim Design provides some old-fashion API via a COM interface to
+handle usc files. This interface works only on Windows and more info can
+be found <a class="reference external" href="http://unisim.supportportal.com/">here</a> (a free
+registration is required). The Usc class of pyfas exposes in python a
+minimal subset of API.</p>
+<p>The available methods are:</p>
+<ul class="simple">
+<li>extract_profiles</li>
+<li>extract_stripchart</li>
+<li>run_until</li>
+<li>close</li>
+<li>save</li>
+</ul>
+<div class="admonition note">
+<strong>Warning:</strong> Save and close any Unisim instance before using this class!</div>
+<div class="section" id="Usc-loading">
+<h2>5.1. Usc loading<a class="headerlink" href="#Usc-loading" title="Permalink to this headline">¶</a></h2>
+<p>To load a specific usc file the correct path and filename have to be
+provided:</p>
+<p><code class="docutils literal"><span class="pre">usc_path</span> <span class="pre">=</span> <span class="pre">'../../pyfas/test/test_files/'</span> <span class="pre">fname</span> <span class="pre">=</span> <span class="pre">'test_case.usc'</span> <span class="pre">usc</span> <span class="pre">=</span> <span class="pre">fa.Usc(usc_path+fname)</span></code></p>
+</div>
+<div class="section" id="Extract-Profiles">
+<h2>5.2. Extract Profiles<a class="headerlink" href="#Extract-Profiles" title="Permalink to this headline">¶</a></h2>
+<p>Profiles can be extracted with the <code class="docutils literal"><span class="pre">extract_profiles</span></code> method: the
+pipeline name is required</p>
+</div>
+<div class="section" id="Extract-stripchart">
+<h2>5.3. Extract stripchart<a class="headerlink" href="#Extract-stripchart" title="Permalink to this headline">¶</a></h2>
+<p>Stripcharts can be extracted with the <code class="docutils literal"><span class="pre">extract_stripchart</span></code> method: the
+defaul stripchart name is <code class="docutils literal"><span class="pre">overall</span></code></p>
+</div>
+<div class="section" id="Run-until">
+<h2>5.4. Run until<a class="headerlink" href="#Run-until" title="Permalink to this headline">¶</a></h2>
+<p>With <code class="docutils literal"><span class="pre">run_until</span></code> the simulation is started until the specified endtime
+(in minures) is reached.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5. Unisim usc files</a><ul>
+<li><a class="reference internal" href="#Usc-loading">5.1. Usc loading</a></li>
+<li><a class="reference internal" href="#Extract-Profiles">5.2. Extract Profiles</a></li>
+<li><a class="reference internal" href="#Extract-stripchart">5.3. Extract stripchart</a></li>
+<li><a class="reference internal" href="#Run-until">5.4. Run until</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="OLGA_ppl.html"
+                        title="previous chapter">4. OLGA ppl files, examples and howto</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Tab_files.html"
+                        title="next chapter">6. Tab files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notebooks/Unisim_usc.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Tab_files.html" title="6. Tab files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="OLGA_ppl.html" title="4. OLGA ppl files, examples and howto"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Giuseppe Pagliuca.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

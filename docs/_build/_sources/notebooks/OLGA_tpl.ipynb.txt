@@ -18,7 +18,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Tpl files, examples and howto"
+    "# OLGA tpl files, examples and howto"
    ]
   },
   {

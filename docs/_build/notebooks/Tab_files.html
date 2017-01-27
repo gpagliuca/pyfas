@@ -1,0 +1,617 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. Tab files &#8212; Pyfas 0.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="5. Unisim usc files" href="Unisim_usc.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Unisim_usc.html" title="5. Unisim usc files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyfas</span> <span class="k">as</span> <span class="nn">fa</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Tab-files">
+<h1>6. Tab files<a class="headerlink" href="#Tab-files" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">A tab file contains thermodynamic properties pre-calculated by a
+thermodynamic simulator like PVTsim. It is good practice to analyze
+these text files <em>before</em> using them. Unfortunately there are several
+file layouts (<code class="docutils literal"><span class="pre">key</span></code>, <code class="docutils literal"><span class="pre">fixed</span></code>, with just a fluid, etc.). The
+<code class="docutils literal"><span class="pre">Tab</span></code> class handles some (most?) of the possible cases but not
+necessarily all the combinations.</div>
+<div class="line">The only public method is <code class="docutils literal"><span class="pre">extract_all</span></code> and returns a pandas
+dataframe with the thenrmodynamic properties. At this moment in time
+the dtaframe obtained is not unique, it depends on the tab format and
+on the number of fluids in the original tab file. Room to improve
+here.</div>
+</div>
+<div class="section" id="Tab-file-loading">
+<h2>6.1. Tab file loading<a class="headerlink" href="#Tab-file-loading" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tab_path</span> <span class="o">=</span> <span class="s1">&#39;../../pyfas/test/test_files/&#39;</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;3P_single-fluid_key.tab&#39;</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">tab_path</span><span class="o">+</span><span class="n">fname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Extraction">
+<h2>6.2. Extraction<a class="headerlink" href="#Extraction" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tab</span><span class="o">.</span><span class="n">export_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tab</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>"1"</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CPG</th>
+      <td>[1898.12, 1905.92, 1913.71, 1921.51, 1929.3, 1...</td>
+    </tr>
+    <tr>
+      <th>CPHL</th>
+      <td>[1610.0, 1617.06, 1623.76, 1630.02, 1635.79, 1...</td>
+    </tr>
+    <tr>
+      <th>CPWT</th>
+      <td>[3454.74, 3458.93, 3463.33, 3467.94, 3472.76, ...</td>
+    </tr>
+    <tr>
+      <th>DROGDP</th>
+      <td>[8.4946e-06, 8.42111e-06, 8.34888e-06, 8.27788...</td>
+    </tr>
+    <tr>
+      <th>DROGDT</th>
+      <td>[-0.000323057, -0.000317492, -0.00031207, -0.0...</td>
+    </tr>
+    <tr>
+      <th>DROHLDP</th>
+      <td>[4.47091e-07, 4.5376e-07, 4.60533e-07, 4.67363...</td>
+    </tr>
+    <tr>
+      <th>DROHLDT</th>
+      <td>[-0.694011, -0.693068, -0.691885, -0.69043, -0...</td>
+    </tr>
+    <tr>
+      <th>DROWTDP</th>
+      <td>[5.24381e-07, 5.22483e-07, 5.1907e-07, 5.14565...</td>
+    </tr>
+    <tr>
+      <th>DROWTDT</th>
+      <td>[0.158913, 0.142489, 0.120409, 0.0942844, 0.06...</td>
+    </tr>
+    <tr>
+      <th>HG</th>
+      <td>[-19279.3, -14920.5, -10543.9, -6149.34, -1736...</td>
+    </tr>
+    <tr>
+      <th>HHL</th>
+      <td>[-317877.0, -313080.0, -308335.0, -303637.0, -...</td>
+    </tr>
+    <tr>
+      <th>HWT</th>
+      <td>[-1395510.0, -1387580.0, -1379650.0, -1371710....</td>
+    </tr>
+    <tr>
+      <th>PT</th>
+      <td>[10000.0, 10000.0, 10000.0, 10000.0, 10000.0, ...</td>
+    </tr>
+    <tr>
+      <th>ROG</th>
+      <td>[0.0849146, 0.0841808, 0.0834595, 0.0827506, 0...</td>
+    </tr>
+    <tr>
+      <th>ROHL</th>
+      <td>[899.718, 900.424, 901.309, 902.434, 903.838, ...</td>
+    </tr>
+    <tr>
+      <th>ROWT</th>
+      <td>[813.363, 812.66, 811.929, 811.17, 810.382, 80...</td>
+    </tr>
+    <tr>
+      <th>RS</th>
+      <td>[0.999977, 0.999979, 0.99998, 0.999982, 0.9999...</td>
+    </tr>
+    <tr>
+      <th>RSW</th>
+      <td>[0.000692485, 0.000692485, 0.000692484, 0.0006...</td>
+    </tr>
+    <tr>
+      <th>SEG</th>
+      <td>[1185.33, 1201.82, 1218.24, 1234.58, 1250.85, ...</td>
+    </tr>
+    <tr>
+      <th>SEHL</th>
+      <td>[-587.526, -570.743, -554.118, -537.594, -521....</td>
+    </tr>
+    <tr>
+      <th>SEWT</th>
+      <td>[-4115.44, -4085.47, -4055.71, -4026.17, -3996...</td>
+    </tr>
+    <tr>
+      <th>SIGGHL</th>
+      <td>[0.0280944, 0.0280288, 0.0279906, 0.0279847, 0...</td>
+    </tr>
+    <tr>
+      <th>SIGGWT</th>
+      <td>[0.0698809, 0.0690383, 0.0682086, 0.0673915, 0...</td>
+    </tr>
+    <tr>
+      <th>SIGHLWT</th>
+      <td>[0.0551154, 0.0550872, 0.0550879, 0.0551306, 0...</td>
+    </tr>
+    <tr>
+      <th>TCG</th>
+      <td>[0.0277744, 0.028032, 0.0282904, 0.0285496, 0....</td>
+    </tr>
+    <tr>
+      <th>TCHL</th>
+      <td>[0.0969043, 0.0960938, 0.0953334, 0.094616, 0....</td>
+    </tr>
+    <tr>
+      <th>TCWT</th>
+      <td>[0.548681, 0.553425, 0.558072, 0.562624, 0.567...</td>
+    </tr>
+    <tr>
+      <th>TM</th>
+      <td>[-10.0, -7.70833, -5.41667, -3.125, -0.833333,...</td>
+    </tr>
+    <tr>
+      <th>VISG</th>
+      <td>[1.01832e-05, 1.02634e-05, 1.03434e-05, 1.0423...</td>
+    </tr>
+    <tr>
+      <th>VISHL</th>
+      <td>[0.220481, 0.227562, 0.234135, 0.240676, 0.247...</td>
+    </tr>
+    <tr>
+      <th>VISWT</th>
+      <td>[0.0010661, 0.00101649, 0.000970794, 0.0009286...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Some key info about the tab file are provided as <code class="docutils literal"><span class="pre">tab.metadata</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tab</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>{&#39;fluids&#39;: [&#39; &quot;1&quot;&#39;],
+ &#39;nfluids&#39;: 1,
+ &#39;p_array&#39;: array([  1.00000000e+04,   1.01325000e+05,   7.38958000e+05,
+          1.46792000e+06,   2.19688000e+06,   2.92583000e+06,
+          3.65479000e+06,   4.38375000e+06,   5.11271000e+06,
+          5.84167000e+06,   6.57063000e+06,   7.29958000e+06,
+          8.02854000e+06,   8.75750000e+06,   9.48646000e+06,
+          1.02154000e+07,   1.09444000e+07,   1.16733000e+07,
+          1.24023000e+07,   1.31313000e+07,   1.38602000e+07,
+          1.45892000e+07,   1.53181000e+07,   1.60471000e+07,
+          1.67760000e+07,   1.75050000e+07,   1.82340000e+07,
+          1.89629000e+07,   1.96919000e+07,   2.04208000e+07,
+          2.11498000e+07,   2.18788000e+07,   2.26077000e+07,
+          2.33367000e+07,   2.40656000e+07,   2.47946000e+07,
+          2.55235000e+07,   2.62525000e+07,   2.69815000e+07,
+          2.77104000e+07,   2.84394000e+07,   2.91683000e+07,
+          2.98973000e+07,   3.06263000e+07,   3.13552000e+07,
+          3.20842000e+07,   3.28131000e+07,   3.35421000e+07,
+          3.42710000e+07,   3.50000000e+07]),
+ &#39;p_points&#39;: 50,
+ &#39;properties&#39;: [&#39;PT&#39;,
+  &#39;TM&#39;,
+  &#39;ROG&#39;,
+  &#39;ROHL&#39;,
+  &#39;ROWT&#39;,
+  &#39;DROGDP&#39;,
+  &#39;DROHLDP&#39;,
+  &#39;DROWTDP&#39;,
+  &#39;DROGDT&#39;,
+  &#39;DROHLDT&#39;,
+  &#39;DROWTDT&#39;,
+  &#39;RS&#39;,
+  &#39;RSW&#39;,
+  &#39;VISG&#39;,
+  &#39;VISHL&#39;,
+  &#39;VISWT&#39;,
+  &#39;CPG&#39;,
+  &#39;CPHL&#39;,
+  &#39;CPWT&#39;,
+  &#39;HG&#39;,
+  &#39;HHL&#39;,
+  &#39;HWT&#39;,
+  &#39;TCG&#39;,
+  &#39;TCHL&#39;,
+  &#39;TCWT&#39;,
+  &#39;SIGGHL&#39;,
+  &#39;SIGGWT&#39;,
+  &#39;SIGHLWT&#39;,
+  &#39;SEG&#39;,
+  &#39;SEHL&#39;,
+  &#39;SEWT&#39;],
+ &#39;t_array&#39;: array([ -10.      ,   -7.70833 ,   -5.41667 ,   -3.125   ,   -0.833333,
+           1.45833 ,    3.75    ,    6.04167 ,    8.33333 ,   10.625   ,
+          12.9167  ,   15.2083  ,   15.56    ,   17.5     ,   19.7917  ,
+          22.0833  ,   24.375   ,   26.6667  ,   28.9583  ,   31.25    ,
+          33.5417  ,   35.8333  ,   38.125   ,   40.4167  ,   42.7083  ,
+          45.      ,   47.2917  ,   49.5833  ,   51.875   ,   54.1667  ,
+          56.4583  ,   58.75    ,   61.0417  ,   63.3333  ,   65.625   ,
+          67.9167  ,   70.2083  ,   72.5     ,   74.7917  ,   77.0833  ,
+          79.375   ,   81.6667  ,   83.9583  ,   86.25    ,   88.5417  ,
+          90.8333  ,   93.125   ,   95.4167  ,   97.7083  ,  100.      ]),
+ &#39;t_points&#39;: 50}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Plotting">
+<h2>6.3. Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline">¶</a></h2>
+<p>Here under an example of a 3D plot of the liquid hydropcarbon viscosity</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="k">import</span> <span class="n">Axes3D</span>
+<span class="kn">import</span> <span class="nn">itertools</span> <span class="k">as</span> <span class="nn">it</span>
+
+<span class="k">def</span> <span class="nf">plot_property_keyword</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">thermo_property</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">it</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mf">1e5</span><span class="p">)</span>
+        <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">thermo_property</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature [C]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Pressure [bar]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ROHL&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plot_property_keyword</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;p_array&#39;</span><span class="p">],</span>
+                      <span class="n">tab</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;t_array&#39;</span><span class="p">],</span>
+                      <span class="n">tab</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="s1">&#39;ROHL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_Tab_files_13_0.png" src="../_images/notebooks_Tab_files_13_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6. Tab files</a><ul>
+<li><a class="reference internal" href="#Tab-file-loading">6.1. Tab file loading</a></li>
+<li><a class="reference internal" href="#Extraction">6.2. Extraction</a></li>
+<li><a class="reference internal" href="#Plotting">6.3. Plotting</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Unisim_usc.html"
+                        title="previous chapter">5. Unisim usc files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notebooks/Tab_files.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Unisim_usc.html" title="5. Unisim usc files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Giuseppe Pagliuca.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

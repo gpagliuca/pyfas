@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>OLGA ppl files, examples and howto &#8212; Pyfas 0.2.3 documentation</title>
+    <title>4. OLGA ppl files, examples and howto &#8212; Pyfas 0.2.3 documentation</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,7 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Tpl files, examples and howto" href="OLGA_tpl.html" /> 
+    <link rel="next" title="5. Unisim usc files" href="Unisim_usc.html" />
+    <link rel="prev" title="3. OLGA tpl files, examples and howto" href="OLGA_tpl.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -37,7 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="OLGA_tpl.html" title="Tpl files, examples and howto"
+          <a href="Unisim_usc.html" title="5. Unisim usc files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="OLGA_tpl.html" title="3. OLGA tpl files, examples and howto"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
       </ul>
@@ -218,7 +222,7 @@ div.nboutput div.output_area.stderr {
 </div>
 </div>
 <div class="section" id="OLGA-ppl-files,-examples-and-howto">
-<h1>OLGA ppl files, examples and howto<a class="headerlink" href="#OLGA-ppl-files,-examples-and-howto" title="Permalink to this headline">¶</a></h1>
+<h1>4. OLGA ppl files, examples and howto<a class="headerlink" href="#OLGA-ppl-files,-examples-and-howto" title="Permalink to this headline">¶</a></h1>
 <p>For an tpl file the following methods are available:</p>
 <ul class="simple">
 <li>filter_data - return a filtered subset of trends</li>
@@ -233,7 +237,7 @@ div.nboutput div.output_area.stderr {
 <li>Post-process your data in Excel or in the notebook itself</li>
 </ol>
 <div class="section" id="Ppl-loading">
-<h2>Ppl loading<a class="headerlink" href="#Ppl-loading" title="Permalink to this headline">¶</a></h2>
+<h2>4.1. Ppl loading<a class="headerlink" href="#Ppl-loading" title="Permalink to this headline">¶</a></h2>
 <p>To load a specific tpl file the correct path and filename have to be
 provided:</p>
 <div class="nbinput nblast docutils container">
@@ -250,7 +254,7 @@ provided:</p>
 </div>
 </div>
 <div class="section" id="Profile-selection">
-<h2>Profile selection<a class="headerlink" href="#Profile-selection" title="Permalink to this headline">¶</a></h2>
+<h2>4.2. Profile selection<a class="headerlink" href="#Profile-selection" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As for tpl files, a ppl file may contain hundreds of profiles, in
 particular for complex networks. For this reason a filtering method is
@@ -346,14 +350,14 @@ pattern all the available profiles will be reported.</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="Dump-to-excel">
-<h2>Dump to excel<a class="headerlink" href="#Dump-to-excel" title="Permalink to this headline">¶</a></h2>
+<h2>4.3. Dump to excel<a class="headerlink" href="#Dump-to-excel" title="Permalink to this headline">¶</a></h2>
 <p>To dump all the variables in an excel file use <code class="docutils literal"><span class="pre">ppl.to_excel()</span></code> If no
 path is provided an excel file with the same name of the tpl file is
 generated in the working folder. Depending on the tpl size this may take
 a while.</p>
 </div>
 <div class="section" id="Extract-a-specific-variable">
-<h2>Extract a specific variable<a class="headerlink" href="#Extract-a-specific-variable" title="Permalink to this headline">¶</a></h2>
+<h2>4.4. Extract a specific variable<a class="headerlink" href="#Extract-a-specific-variable" title="Permalink to this headline">¶</a></h2>
 <p>Once you know the variable(s) index you are interested in (see the
 filtering paragraph above for more info) you can extract it (or them)
 and use the data directly in python.</p>
@@ -526,7 +530,7 @@ attribute:</p>
 </div>
 </div>
 <div class="section" id="Ppl-data-structure">
-<h2>Ppl data structure<a class="headerlink" href="#Ppl-data-structure" title="Permalink to this headline">¶</a></h2>
+<h2>4.5. Ppl data structure<a class="headerlink" href="#Ppl-data-structure" title="Permalink to this headline">¶</a></h2>
 <p>The ppl data structure at the moment contains:</p>
 <ul class="simple">
 <li>the geometry profile of the branch as <code class="docutils literal"><span class="pre">ppl.data[variable_index][0]</span></code></li>
@@ -539,7 +543,7 @@ attribute:</p>
 geometry and 1 for the data, the last one identifies the timestep.</p>
 </div>
 <div class="section" id="Data-processing">
-<h2>Data processing<a class="headerlink" href="#Data-processing" title="Permalink to this headline">¶</a></h2>
+<h2>4.6. Data processing<a class="headerlink" href="#Data-processing" title="Permalink to this headline">¶</a></h2>
 <p>The results available in the data attribute are numpy arrays and can be
 easily manipulated and plotted:</p>
 <div class="nbinput nblast docutils container">
@@ -640,20 +644,23 @@ easily manipulated and plotted:</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">OLGA ppl files, examples and howto</a><ul>
-<li><a class="reference internal" href="#Ppl-loading">Ppl loading</a></li>
-<li><a class="reference internal" href="#Profile-selection">Profile selection</a></li>
-<li><a class="reference internal" href="#Dump-to-excel">Dump to excel</a></li>
-<li><a class="reference internal" href="#Extract-a-specific-variable">Extract a specific variable</a></li>
-<li><a class="reference internal" href="#Ppl-data-structure">Ppl data structure</a></li>
-<li><a class="reference internal" href="#Data-processing">Data processing</a></li>
+<li><a class="reference internal" href="#">4. OLGA ppl files, examples and howto</a><ul>
+<li><a class="reference internal" href="#Ppl-loading">4.1. Ppl loading</a></li>
+<li><a class="reference internal" href="#Profile-selection">4.2. Profile selection</a></li>
+<li><a class="reference internal" href="#Dump-to-excel">4.3. Dump to excel</a></li>
+<li><a class="reference internal" href="#Extract-a-specific-variable">4.4. Extract a specific variable</a></li>
+<li><a class="reference internal" href="#Ppl-data-structure">4.5. Ppl data structure</a></li>
+<li><a class="reference internal" href="#Data-processing">4.6. Data processing</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="OLGA_tpl.html"
-                        title="previous chapter">Tpl files, examples and howto</a></p>
+                        title="previous chapter">3. OLGA tpl files, examples and howto</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Unisim_usc.html"
+                        title="next chapter">5. Unisim usc files</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -682,7 +689,10 @@ easily manipulated and plotted:</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="OLGA_tpl.html" title="Tpl files, examples and howto"
+          <a href="Unisim_usc.html" title="5. Unisim usc files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="OLGA_tpl.html" title="3. OLGA tpl files, examples and howto"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
       </ul>

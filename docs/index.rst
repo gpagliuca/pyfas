@@ -9,9 +9,14 @@ Welcome to Pyfas's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :numbered:
 
+   ./notebooks/Introduction.ipynb
    ./notebooks/OLGA_tpl
    ./notebooks/OLGA_ppl
+   ./notebooks/Unisim_usc.ipynb
+   ./notebooks/Tab_files.ipynb
+   ./notebooks/utilities.ipynb
 
 
 Indices and tables
