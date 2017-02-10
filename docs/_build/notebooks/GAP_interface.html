@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. GAP interface &#8212; Pyfas 0.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Utilities" href="utilities.html" />
+    <link rel="prev" title="6. Tab files" href="Tab_files.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="8. Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Tab_files.html" title="6. Tab files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="GAP-interface">
+<h1>7. GAP interface<a class="headerlink" href="#GAP-interface" title="Permalink to this headline">¶</a></h1>
+<p>GAP provides a comfortable set of API via the OpenServer interface. This
+interface works, of course, only on Windows and provides a CLI access to
+most of the simulator features. <code class="docutils literal"><span class="pre">Pyfas</span></code> is not required to use
+OpenServer.</p>
+<p>This example uses pywin32, but any package providing a COM interface
+should work:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">Connecting</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">open</span> <span class="pre">GAP</span> <span class="pre">file</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">from</span> <span class="pre">win32com.client</span> <span class="pre">import</span> <span class="pre">Dispatch</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">gap</span> <span class="pre">=</span> <span class="pre">Dispatch('PX32.OpenServer.1')</span></code></div>
+</div>
+<p><code class="docutils literal"><span class="pre">OpenServer</span></code> unfortunately works only if GAP is open and on the active
+GAP model.</p>
+<p>Two basic operations are possible:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">getvalue</span></code></li>
+<li><code class="docutils literal"><span class="pre">setvalue</span></code></li>
+</ul>
+<p>Pretty straightforward, no?</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">This</span> <span class="pre">command</span> <span class="pre">shows</span> <span class="pre">the</span> <span class="pre">flow</span> <span class="pre">correlation</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">Pipe1</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">{PROD}</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">gap.getvalue(&quot;GAP.MOD[{PROD}].PIPE[1].PIPECORR&quot;)</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">Out[4]:</span> <span class="pre">'MukerjeeBrill'</span></code></div>
+</div>
+<p>It looks complicated but a good reference guide is available and, even
+better, with the right click in the GUI the corresponding <code class="docutils literal"><span class="pre">OpenServer</span></code>
+command can be showed in the <code class="docutils literal"><span class="pre">OpenServer</span></code> window:</p>
+<div class="figure">
+<img alt="" src="../_images/openserver.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Tab_files.html"
+                        title="previous chapter">6. Tab files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">8. Utilities</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/notebooks/GAP_interface.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="8. Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Tab_files.html" title="6. Tab files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Giuseppe Pagliuca.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

@@ -16,6 +16,7 @@ Welcome to Pyfas's documentation!
    ./notebooks/OLGA_ppl
    ./notebooks/Unisim_usc.ipynb
    ./notebooks/Tab_files.ipynb
+   ./notebooks/GAP_interface.ipynb
    ./notebooks/utilities.ipynb
 
 

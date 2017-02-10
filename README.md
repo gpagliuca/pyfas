@@ -10,7 +10,7 @@ At this moment in time the toolbox contains wrappers for:
 
 * OLGA 
 * Unisim Design
-* Gap (not yet available)
+* GAP 
 * Pipesim (not yet available)
 
 **Olga** is the standard de facto for the dynamic simulations of multiphase
