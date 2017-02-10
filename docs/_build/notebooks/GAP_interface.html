@@ -78,6 +78,11 @@ GAP model.</p>
 <div class="line"><code class="docutils literal"><span class="pre">gap.getvalue(&quot;GAP.MOD[{PROD}].PIPE[1].PIPECORR&quot;)</span></code></div>
 <div class="line"><code class="docutils literal"><span class="pre">Out[4]:</span> <span class="pre">'MukerjeeBrill'</span></code></div>
 </div>
+<p>To set a value instead:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">This</span> <span class="pre">command</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">flowrate</span> <span class="pre">of</span> <span class="pre">SOURCE1</span> <span class="pre">to</span> <span class="pre">10</span> <span class="pre">(it</span> <span class="pre">uses</span> <span class="pre">predefined</span> <span class="pre">unit)</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">gap.setvalue(&quot;GAP.MOD[{PROD}].SOURCE[{Source1}].Rate&quot;,</span> <span class="pre">10)</span></code></div>
+</div>
 <p>It looks complicated but a good reference guide is available and, even
 better, with the right click in the GUI the corresponding <code class="docutils literal"><span class="pre">OpenServer</span></code>
 command can be showed in the <code class="docutils literal"><span class="pre">OpenServer</span></code> window:</p>
