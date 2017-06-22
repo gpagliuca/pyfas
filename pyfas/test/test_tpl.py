@@ -28,6 +28,12 @@ def test_attributes():
     assert tpl._attributes['data_idx'] == 421
     assert 'VOLGB' in tpl.trends[1]
 
+def test_extraction_preprocessor():
+    tpl = Tpl(TEST_FLD+"/2016_1_Legacy.tpl")
+    tpl.extract(4)
+    assert tpl.data[4][0] == 487.87419999999997
+    assert 'OILC' in tpl.label[4]
+
 def test_extraction():
     tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
     tpl.extract(3)

@@ -20,22 +20,8 @@ def unisim_csv(fname):
                      skiprows=10,
                      index_col=0,
                      na_values=('Shutdown', 'Bad',
-                                'I/O Timeout', 'Scan Timeout'))
+                                'I/O Timeout', 'Scan Timeout', '<Empty>'))
     df.columns = headers
     df.units = UoMs
     return df
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

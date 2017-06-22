@@ -69,7 +69,10 @@ class Tpl:
         with open(self.abspath) as fobj:
             for idx, line in enumerate(fobj):
                 if idx == 1 + variable_idx+self._attributes['CATALOG']:
-                    self.data[variable_idx] = data[:len(self.time)]
+                    try:
+                        self.data[variable_idx] = data[:len(self.time)]
+                    except TypeError:
+                        self.data[variable_idx] = data.base
                     self.label[variable_idx] = line.replace("\'",
                                                             '').replace("\n",
                                                                         "")
