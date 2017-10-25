@@ -8,3 +8,4 @@ from pyfas.gists import unisim_csv
 if os.name == "nt":
     from pyfas.pilink import PI_read
     from pyfas.usc import Usc
+    from pyfas.sfc import SFC
