@@ -1,38 +1,15 @@
 Metadata-Version: 1.0
 Name: pyfas
-Version: 0.1.0
+Version: 0.3.0
 Summary: Toolbox for tpl, ppl and tab files
-Home-page: UNKNOWN
+Home-page: https://github.com/gpagliuca/pyfas
 Author: Giuseppe Pagliuca
 Author-email: giuseppe.pagliuca@gmail.com
-License: LICENSE.txt
-Description: ===========
+License: GPL3
+Description: 
+        ===========
         Pyfas - FA tools
         ===========
         
         Pyfas provides python tools for a flow assurance engineer.
-        Typical usage often looks like this::
-        
-            #!/usr/bin/env python
-            tpl = Tpl(fname)
-            d, m = tpl.extract(1)
-        
-        
-        Tpl files
-        =========
-        
-        Methods avaialbe for tpl files:
-        
-        * Extract
-        
-        * to_excel
-        
-        To be added
-        -------------
-        
-        Tab files
-        ========
-        
-        To be added
-        
-Platform: UNKNOWN
+        Here the documentation: https://pyfas.readthedocs.io/en/latest/
