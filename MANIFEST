@@ -5,6 +5,7 @@ pyfas/genkey.py
 pyfas/gists.py
 pyfas/pilink.py
 pyfas/ppl.py
+pyfas/sfc.py
 pyfas/tab.py
 pyfas/tpl.py
 pyfas/usc.py
