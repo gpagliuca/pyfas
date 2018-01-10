@@ -1,3 +1,4 @@
+sphinx<0.16
 openpyxl
 jupyter>=1.0.0
 pyfas>=0.1.0
