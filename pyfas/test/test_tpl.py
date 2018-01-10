@@ -40,9 +40,19 @@ def test_extraction():
     assert tpl.data[3][0] == 9.973410e6
     assert 'Pressure' in tpl.label[3]
 
+def test_multiple_extraction():
+    tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
+    tpl.extract(3, 4, 5)
+    assert tpl.data[3][0] == 9.973410e6
+    assert 'Pressure' in tpl.label[3]
+    assert tpl.data[4][0] == 1.291370e1
+    assert 'temperature' in tpl.label[4]
+    assert tpl.data[5][0] == 1.00000000
+    assert 'Holdup' in tpl.label[5]
+
 def test_filter():
     tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
-    PTs = tpl.filter_data('PT')
+    PTs = tpl.filter_trends('PT')
     assert 'PT' in PTs[3]
     assert 'POSITION' in PTs[3]
     assert 'TIEIN' in PTs[3]
@@ -61,3 +71,10 @@ def test_to_excel():
     tpl.to_excel(temp_folder)
     assert "FC1_rev01_tpl.xlsx" in os.listdir(temp_folder)
     os.remove(temp_folder+"/FC1_rev01_tpl.xlsx")
+
+def test_view_trends():
+    tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
+    df = tpl.view_trends()
+    df = tpl.view_trends('HOL')
+    assert df['Index'][2] == 36
+    assert df['Position'][4] == 'POSITION - RISER_TOP'
