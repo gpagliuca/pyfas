@@ -1,56 +1,178 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>4. OLGA ppl files, examples and howto &#8212; Pyfas 0.2.3 documentation</title>
-    
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.2.3',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Unisim usc files" href="Unisim_usc.html" />
-    <link rel="prev" title="3. OLGA tpl files, examples and howto" href="OLGA_tpl.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="Unisim_usc.html" title="5. Unisim usc files"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="OLGA_tpl.html" title="3. OLGA tpl files, examples and howto"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. OLGA ppl files, examples and howto &mdash; Pyfas 0.2.3 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Pyfas 0.2.3 documentation" href="../index.html"/>
+        <link rel="next" title="5. Unisim usc files" href="Unisim_usc.html"/>
+        <link rel="prev" title="3. OLGA tpl files, examples and howto" href="OLGA_tpl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Pyfas
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">1. Introduction to Pyfas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html#Installation">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OLGA_tpl.html">3. OLGA tpl files, examples and howto</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. OLGA ppl files, examples and howto</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Ppl-loading">4.1. Ppl loading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Profile-selection">4.1.1. Profile selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Dump-to-excel">4.1.2. Dump to excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Extract-a-specific-variable">4.1.3. Extract a specific variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Ppl-data-structure">4.1.4. Ppl data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Data-processing">4.1.5. Data processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Unisim_usc.html">5. Unisim usc files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tab_files.html">6. Tab files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GAP_interface.html">7. GAP interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SFC_interface.html">8. SFC interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">9. Utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pyfas</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>4. OLGA ppl files, examples and howto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/notebooks/OLGA_ppl.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   
 <style>
@@ -118,7 +240,7 @@ div.nboutput div.prompt pre {
 /* all prompts */
 div.nbinput div.prompt,
 div.nboutput div.prompt {
-    min-width: 7ex;
+    min-width: 8ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
@@ -133,6 +255,12 @@ div.nboutput div.prompt {
     div.nboutput div.prompt.empty {
         padding: 0;
     }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
 }
 
 /* input/output area */
@@ -206,14 +334,50 @@ div.nboutput div.output_area.stderr {
 .ansi-white-intense-fg { color: #A1A6B2; }
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
 .ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
 </style>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">pyfas</span> <span class="k">as</span> <span class="nn">fa</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -241,49 +405,48 @@ div.nboutput div.output_area.stderr {
 <p>To load a specific tpl file the correct path and filename have to be
 provided:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl_path</span> <span class="o">=</span> <span class="s1">&#39;../../pyfas/test/test_files/&#39;</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;FC1_rev01.ppl&#39;</span>
 <span class="n">ppl</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">Ppl</span><span class="p">(</span><span class="n">ppl_path</span><span class="o">+</span><span class="n">fname</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="Profile-selection">
-<h2>4.2. Profile selection<a class="headerlink" href="#Profile-selection" title="Permalink to this headline">¶</a></h2>
+<h3>4.1.1. Profile selection<a class="headerlink" href="#Profile-selection" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
 <div class="line">As for tpl files, a ppl file may contain hundreds of profiles, in
 particular for complex networks. For this reason a filtering method is
 quite useful.</div>
 <div class="line">The easiest way is to filter on all the profiles using patters, the
-command <code class="docutils literal"><span class="pre">ppl.filter_trends(&quot;PT&quot;)</span></code> filters all the pressure profiless
-(or better, all the profiles with &#8220;PT&#8221; in the description, if you have
-defined a temperature profile in the position &#8220;PTTOPSIDE&#8221;, for
+command <code class="docutils literal notranslate"><span class="pre">ppl.filter_trends(&quot;PT&quot;)</span></code> filters all the pressure profiless
+(or better, all the profiles with “PT” in the description, if you have
+defined a temperature profile in the position “PTTOPSIDE”, for
 example, this profile will be selected too). The resulting python
 dictionaly will have a unique index for each filtered profile that can
 be used to identify the interesting profile(s). In case of an emply
 pattern all the available profiles will be reported.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="s1">&#39;PT&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[6]:
 </pre></div>
 </div>
-<div class="output_area highlight-none"><div class="highlight"><pre>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>{4: &quot;PT &#39;SECTION:&#39; &#39;BRANCH:&#39; &#39;old_offshore&#39; &#39;(PA)&#39; &#39;Pressure&#39;\n&quot;,
  12: &quot;PT &#39;SECTION:&#39; &#39;BRANCH:&#39; &#39;riser&#39; &#39;(PA)&#39; &#39;Pressure&#39;\n&quot;,
  20: &quot;PT &#39;SECTION:&#39; &#39;BRANCH:&#39; &#39;new_offshore&#39; &#39;(PA)&#39; &#39;Pressure&#39;\n&quot;,
@@ -295,22 +458,35 @@ pattern all the available profiles will be reported.</div>
 </div>
 <p>The same outpout can be reported as a pandas dataframe:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ppl</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="s1">&#39;PT&#39;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Profiles&quot;</span><span class="p">,))</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -350,36 +526,49 @@ pattern all the available profiles will be reported.</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="Dump-to-excel">
-<h2>4.3. Dump to excel<a class="headerlink" href="#Dump-to-excel" title="Permalink to this headline">¶</a></h2>
-<p>To dump all the variables in an excel file use <code class="docutils literal"><span class="pre">ppl.to_excel()</span></code> If no
+<h3>4.1.2. Dump to excel<a class="headerlink" href="#Dump-to-excel" title="Permalink to this headline">¶</a></h3>
+<p>To dump all the variables in an excel file use <code class="docutils literal notranslate"><span class="pre">ppl.to_excel()</span></code> If no
 path is provided an excel file with the same name of the tpl file is
 generated in the working folder. Depending on the tpl size this may take
 a while.</p>
 </div>
 <div class="section" id="Extract-a-specific-variable">
-<h2>4.4. Extract a specific variable<a class="headerlink" href="#Extract-a-specific-variable" title="Permalink to this headline">¶</a></h2>
+<h3>4.1.3. Extract a specific variable<a class="headerlink" href="#Extract-a-specific-variable" title="Permalink to this headline">¶</a></h3>
 <p>Once you know the variable(s) index you are interested in (see the
 filtering paragraph above for more info) you can extract it (or them)
 and use the data directly in python.</p>
-<p>Let&#8217;s assume you are interested in the pressure and the temperature
-profile of the branch <code class="docutils literal"><span class="pre">riser</span></code>:</p>
+<p>Let’s assume you are interested in the pressure and the temperature
+profile of the branch <code class="docutils literal notranslate"><span class="pre">riser</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ppl</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="s2">&quot;TM&quot;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Profiles&quot;</span><span class="p">,))</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -417,22 +606,35 @@ profile of the branch <code class="docutils literal"><span class="pre">riser</sp
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ppl</span><span class="o">.</span><span class="n">filter_data</span><span class="p">(</span><span class="s2">&quot;PT&quot;</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Profiles&quot;</span><span class="p">,))</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -475,83 +677,83 @@ profile of the branch <code class="docutils literal"><span class="pre">riser</sp
 <p>variable 12 for the pressure</p>
 <p>Now we can proceed with the data extraction:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
 <span class="n">ppl</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>The ppl object now has the two profiles available in the <code class="docutils literal"><span class="pre">data</span></code>
+<p>The ppl object now has the two profiles available in the <code class="docutils literal notranslate"><span class="pre">data</span></code>
 attribute:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[11]:
 </pre></div>
 </div>
-<div class="output_area highlight-none"><div class="highlight"><pre>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>dict_keys([12, 13])
 </pre></div>
 </div>
 </div>
 <p>while the <em>label</em> attibute stores the variable type:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl</span><span class="o">.</span><span class="n">label</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[12]:
 </pre></div>
 </div>
-<div class="output_area highlight-none"><div class="highlight"><pre>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>&quot;TM &#39;SECTION:&#39; &#39;BRANCH:&#39; &#39;riser&#39; &#39;(C)&#39; &#39;Fluid temperature&#39;&quot;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="Ppl-data-structure">
-<h2>4.5. Ppl data structure<a class="headerlink" href="#Ppl-data-structure" title="Permalink to this headline">¶</a></h2>
+<h3>4.1.4. Ppl data structure<a class="headerlink" href="#Ppl-data-structure" title="Permalink to this headline">¶</a></h3>
 <p>The ppl data structure at the moment contains:</p>
 <ul class="simple">
-<li>the geometry profile of the branch as <code class="docutils literal"><span class="pre">ppl.data[variable_index][0]</span></code></li>
+<li>the geometry profile of the branch as <code class="docutils literal notranslate"><span class="pre">ppl.data[variable_index][0]</span></code></li>
 <li>the selected profile at the timestep 0 as
-<code class="docutils literal"><span class="pre">ppl.data[variable_index][1][0]</span></code></li>
+<code class="docutils literal notranslate"><span class="pre">ppl.data[variable_index][1][0]</span></code></li>
 <li>the selected profile at the last timestep as
-<code class="docutils literal"><span class="pre">ppl.data[variable_index][1][-1]</span></code></li>
+<code class="docutils literal notranslate"><span class="pre">ppl.data[variable_index][1][-1]</span></code></li>
 </ul>
 <p>In other words the first index is the variable, the second is 0 for the
 geometry and 1 for the data, the last one identifies the timestep.</p>
 </div>
 <div class="section" id="Data-processing">
-<h2>4.6. Data processing<a class="headerlink" href="#Data-processing" title="Permalink to this headline">¶</a></h2>
+<h3>4.1.5. Data processing<a class="headerlink" href="#Data-processing" title="Permalink to this headline">¶</a></h3>
 <p>The results available in the data attribute are numpy arrays and can be
 easily manipulated and plotted:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">geometry</span> <span class="o">=</span> <span class="n">ppl</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -577,11 +779,11 @@ easily manipulated and plotted:</p>
 </div>
 <p>To plot the last timestep:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">ppl_plot</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">tm_riser</span><span class="p">,</span> <span class="n">pt_riser</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -595,11 +797,11 @@ easily manipulated and plotted:</p>
 </div>
 <p>The time can also be used as parameter:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ipywidgets.widgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
 
@@ -635,71 +837,79 @@ easily manipulated and plotted:</p>
 <p>The above plot has an interactive widget if executed</p>
 </div>
 </div>
-
-
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">4. OLGA ppl files, examples and howto</a><ul>
-<li><a class="reference internal" href="#Ppl-loading">4.1. Ppl loading</a></li>
-<li><a class="reference internal" href="#Profile-selection">4.2. Profile selection</a></li>
-<li><a class="reference internal" href="#Dump-to-excel">4.3. Dump to excel</a></li>
-<li><a class="reference internal" href="#Extract-a-specific-variable">4.4. Extract a specific variable</a></li>
-<li><a class="reference internal" href="#Ppl-data-structure">4.5. Ppl data structure</a></li>
-<li><a class="reference internal" href="#Data-processing">4.6. Data processing</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="OLGA_tpl.html"
-                        title="previous chapter">3. OLGA tpl files, examples and howto</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="Unisim_usc.html"
-                        title="next chapter">5. Unisim usc files</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/notebooks/OLGA_ppl.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Unisim_usc.html" class="btn btn-neutral float-right" title="5. Unisim usc files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="OLGA_tpl.html" class="btn btn-neutral" title="3. OLGA tpl files, examples and howto" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Giuseppe Pagliuca.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="Unisim_usc.html" title="5. Unisim usc files"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="OLGA_tpl.html" title="3. OLGA tpl files, examples and howto"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Pyfas 0.2.3 documentation</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Giuseppe Pagliuca.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.2.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
