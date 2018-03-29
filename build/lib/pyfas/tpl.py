@@ -43,9 +43,9 @@ class Tpl:
                     if adj_idx > 0:
                         self.trends[adj_idx] = line
 
-    def filter_data(self, pattern=''):
+    def filter_trends(self, pattern=''):
         """
-        Filter available varaibles
+        Filter available trends
         """
         filtered_trends = {}
         with open(self.abspath) as fobj:
@@ -59,7 +59,7 @@ class Tpl:
 
     def extract(self, *args):
         """
-        Extract a specific varaible
+        Extract a specific variable
         """
         self.time = np.loadtxt(self.abspath,
                                skiprows=self._attributes['data_idx']+1,
@@ -82,15 +82,18 @@ class Tpl:
                         break
 
     def view_trends(self, pattern=''):
+        """
+        Return a pandas df with the available trends
+        """
         d = OrderedDict()
         d['Index'] = None
         d['Variable'] = []
         d['Position'] = []
         d['Unit'] = []
         d['Description'] = []
-        raw_d = self.filter_data(pattern)
+        raw_d = self.filter_trends(pattern)
         d['Index'] = [k for k in raw_d.keys()]
-        for st in self.filter_data(pattern).values():
+        for st in self.filter_trends(pattern).values():
             st = st.replace('\n', '')
             d['Variable'].append(st.split(' ')[0])
             temp = [x[1:-1] for x in re.findall("\'[\w\(\) \-\:\/]+\'", st)]
@@ -108,7 +111,7 @@ class Tpl:
         """
         path = os.getcwd()
         fname = self.fname.replace(".tpl", "_tpl") + ".xlsx"
-        idxs = self.filter_data("")
+        idxs = self.filter_trends("")
         for idx in idxs:
             self.extract(idx)
         data_df = pd.DataFrame(self.data)
