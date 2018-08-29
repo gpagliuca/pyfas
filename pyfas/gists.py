@@ -1,15 +1,16 @@
 
 import numpy as np
 import pandas as pd
-import quantities as pq
 
 def surge_calc(time_series, liq_flowrate, drain):
-    dt = np.diff(time_series)
-    dt.units = pq.h
-    surge = (np.convolve(liq_flowrate, 1)[1:]*liq_flowrate.units-drain)*dt
-    surge.base[surge < 0] = 0
+    dt = np.diff(time_series)[-1]
+    mean_liq_flow = np.mean(np.vstack([liq_flowrate, 
+                                       np.hstack([np.zeros(1), 
+                                                  liq_flowrate[:-1]])]),
+                                                  axis=0)
+    surge = (mean_liq_flow-drain)*dt
+    surge[surge < 0] = 0
     return np.cumsum(surge)
-
 
 def unisim_csv(fname):
     with open(fname, 'r') as fobj:
@@ -22,6 +23,5 @@ def unisim_csv(fname):
                      na_values=('Shutdown', 'Bad',
                                 'I/O Timeout', 'Scan Timeout', '<Empty>'))
     df.columns = headers
-    df.units = UoMs
     return df
 

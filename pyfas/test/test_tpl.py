@@ -76,5 +76,5 @@ def test_view_trends():
     tpl = Tpl(TEST_FLD+"/FC1_rev01.tpl")
     df = tpl.view_trends()
     df = tpl.view_trends('HOL')
-    assert df['Index'][2] == 36
-    assert df['Position'][4] == 'POSITION - RISER_TOP'
+    assert df['Index'][4] == 36
+    assert df['Position'][4] == 'POSITION - VENT_LINE'
