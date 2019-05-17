@@ -11,7 +11,7 @@ At this moment in time the toolbox contains wrappers for:
 * OLGA 
 * Unisim Design
 * GAP 
-* Pipesim (not yet available)
+* Pipesim (via OpenLink, for all the versions <= 2012.4)
 
 **Olga** is the standard de facto for the dynamic simulations of multiphase
 systems (single pipelines or complex network) in the oil and gas indistry. The
@@ -26,6 +26,8 @@ output files, the only way to communicate with the software is via a COM interfa
 using pywin32.  Pyfas does not pretend to exposes all the possible
 functionalities of Unisim, only a very limited subset is available at the
 moment.
+
+**PipeSim** is a steady state simulator for both single branches or networks
 
 ### Utilities
 
