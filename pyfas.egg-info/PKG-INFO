@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyfas
-Version: 0.4.0
+Version: 0.4.1
 Summary: Toolbox for Flow Assurance engineers
 Home-page: https://github.com/gpagliuca/pyfas.git
 Author: Giuseppe Pagliuca
@@ -19,7 +19,7 @@ Description: [![Documentation Status](https://readthedocs.org/projects/pyfas/bad
         * OLGA 
         * Unisim Design
         * GAP 
-        * Pipesim (not yet available)
+        * Pipesim (via OpenLink, for all the versions <= 2012.4)
         
         **Olga** is the standard de facto for the dynamic simulations of multiphase
         systems (single pipelines or complex network) in the oil and gas indistry. The
@@ -34,6 +34,8 @@ Description: [![Documentation Status](https://readthedocs.org/projects/pyfas/bad
         using pywin32.  Pyfas does not pretend to exposes all the possible
         functionalities of Unisim, only a very limited subset is available at the
         moment.
+        
+        **PipeSim** is a steady state simulator for both single branches or networks
         
         ### Utilities
         
