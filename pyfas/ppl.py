@@ -75,8 +75,8 @@ class Ppl:
         return filtered_profiles
 
     def _define_branch(self, variable_idx):
-        return re.findall(r"'[\w\ \:\-]*'", \
-                          self.profiles[variable_idx])[2].replace("'", "")
+        return re.findall(r"'(.+?)'", \
+                          self.profiles[variable_idx])[2]
 
     def extract_geometry(self, branch, branch_begin):
         """
