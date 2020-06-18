@@ -6,6 +6,9 @@ from pyfas import Ppl
 
 TEST_FLD = os.getcwd() + os.sep + "test_files" + os.sep
 
+oscheck = pytest.mark.skipif(os.name == 'posix',
+                             reason='this module works only on win')
+
 def test_not_a_ppl():
     with pytest.raises(ValueError) as exeinfo:
         ppl = Ppl(TEST_FLD+"/FC1_rev01.tpl")
@@ -15,7 +18,7 @@ def test_init():
     ppl = Ppl(TEST_FLD+"FC1_rev01.ppl")
     assert ppl.fname == "FC1_rev01.ppl"
     assert ppl._attributes['branch_idx'][0] == 18
-    branch = 'tiein_spool'
+    branch = 'tiein spool . $'
     assert int(ppl.geometries[branch][0][0]) == 0
     assert int(ppl.geometries[branch][0][-1]) == 265
     assert int(ppl.geometries[branch][1][0]) == -120
@@ -47,6 +50,7 @@ def test_filter():
     ppl.profiles
     assert 'GG' in ppl.profiles[1]
 
+@oscheck
 def test_to_excel():
     ppl = Ppl(TEST_FLD+"FC1_rev01.ppl")
     ppl.to_excel()
