@@ -137,13 +137,15 @@ class Tab():
         """
         array_ts = []
         array_ps = []
-        for array_t, array_p in it.product(self.metadata["t_array"][0],
-                                           self.metadata["p_array"][0]):
-            array_ts.append(array_t)
-            array_ps.append(array_p/1e5)
+
+        for p in self.metadata['p_array'][0]:
+            array_ts = array_ts+list(self.metadata['t_array'][0])
+            array_ps = array_ps+[p/1e5 for x in self.metadata['p_array'][0]]
+            new_p=new_p+[p/1e5 for x in self.metadata['p_array'][0]]
 
         array_ts_tot = [array_ts for t in self.data.index]
         array_ps_tot = [array_ps for t in self.data.index]
+        
         values = []
         for idx in self.data.index:
             values.append(self._partial_extraction_fixed(idx+1))
