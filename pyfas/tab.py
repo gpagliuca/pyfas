@@ -137,10 +137,9 @@ class Tab():
         """
         array_ts = []
         array_ps = []
-        for array_t, array_p in it.product(self.metadata["t_array"][0],
-                                           self.metadata["p_array"][0]):
-            array_ts.append(array_t)
-            array_ps.append(array_p/1e5)
+        for p in self.metadata['p_array'][0]:
+            array_ts=array_ts + list(self.metadata['t_array'][0])
+            array_ps=array_ps + [p/1e5 for x in self.metadata['p_array'][0]]
 
         array_ts_tot = [array_ts for t in self.data.index]
         array_ps_tot = [array_ps for t in self.data.index]
@@ -211,3 +210,38 @@ class Tab():
             self._export_all_fixed()
         if self.tab_type == 'keyword':
             self._export_all_keyword()
+
+    def create_da(self):
+        """
+        Formats PVT data and creates an xarray DataArray object containing the data
+        """
+        if self._tab_type()!="fixed":
+            print("Method only implemented for fixed table type")
+
+        elif self._tab_type()=="fixed":
+            self.export_all()
+            units=list(map(lambda x: " ["+x.strip(" ")+"]", self.data["Unit"].values))
+            names=self.data["Property"].values
+            columns=[]
+            for (a,b) in list(zip(names,units)):
+                columns.append(a+b)
+
+            _data=self.data["values"].values
+
+            series={}
+            for i, array in enumerate(_data): #cycles through each column in data, creating a pandas dataseries 
+                series[columns[i]]=array
+
+            new_p=[]
+            new_t=[]
+
+            for p in self.metadata['p_array'][0]:
+                new_t=new_t+list(self.metadata['t_array'][0])
+                new_p=new_p+[p/1e5 for x in self.metadata['p_array'][0]]
+
+
+            da_index=zip(new_p, new_t)
+            da_index=pd.MultiIndex.from_tuples(da_index, names=["P", "T"])
+
+            formatted_df = pd.DataFrame(series, index=da_index)
+            self.da = formatted_df.to_xarray()
