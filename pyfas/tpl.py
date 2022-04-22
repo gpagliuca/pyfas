@@ -96,7 +96,7 @@ class Tpl:
         for st in self.filter_trends(pattern).values():
             st = st.replace('\n', '')
             d['Variable'].append(st.split(' ')[0])
-            temp = [x[1:-1] for x in re.findall("\'[\w\(\) \-\:\/]+\'", st)]
+            temp = [x[1:-1] for x in re.findall("\'[\w\(\) \= \, \. \-\:\/]+\'", st)]
             d['Description'].append(temp[-1])
             d['Unit'].append(temp[-2][1:-1])
             pos = " - ".join(temp[: -2]).replace("BRANCH", "Br").replace(":", "")
