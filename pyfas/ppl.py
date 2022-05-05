@@ -92,7 +92,7 @@ class Ppl:
                     except ValueError:
                         pass
                 raw_geometry.extend(points)
-                if 'CATALOG' in line or 'BRANCH' in line:
+                if ('CATALOG' in line) or ('BRANCH' in line) or ('ANNULUS' in line):
                     break
         xy_geo = raw_geometry
         self.geometries[branch] = (xy_geo[:int(len(xy_geo)/2)],
