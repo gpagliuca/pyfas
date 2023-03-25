@@ -19,5 +19,9 @@ classifiers = [
 keywords = ["flow", "engineering", "toolbox"]
 requires-python = ">=3.6"
 
+dependencies = [
+    "pandas",
+]
+
 [project.urls]
 Homepage = "https://github.com/gpagliuca/pyfas"
