@@ -10,7 +10,7 @@ version = "0.4.3"
 description = "Toolbox for Flow Assurance engineers"
 readme = "README.md"
 authors = [{ name = "Giuseppe Pagliuca", email = "giuseppe.pagliuca@gmail.com" }]
-license = { file = "LICENSE" }
+license = { file = "LICENSE.txt" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
