@@ -9,7 +9,7 @@ name = "pyfasr"
 version = "0.4.3"
 description = "Toolbox for Flow Assurance engineers"
 readme = "README.md"
-authors = [{ name = "Giuseppe Pagliuca", email = "giuseppe.pagliuca.com" }]
+authors = [{ name = "Giuseppe Pagliuca", email = "giuseppe.pagliuca@gmail.com" }]
 license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
