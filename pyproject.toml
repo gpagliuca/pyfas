@@ -1,0 +1,23 @@
+# pyproject.toml
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyfasr"
+version = "0.4.3"
+description = "Toolbox for Flow Assurance engineers"
+readme = "README.md"
+authors = [{ name = "Giuseppe Pagliuca", email = "giuseppe.pagliuca.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["flow", "engineering", "toolbox"]
+requires-python = ">=3.6"
+
+[project.urls]
+Homepage = "https://github.com/gpagliuca/pyfas"
