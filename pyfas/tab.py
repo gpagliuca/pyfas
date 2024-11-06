@@ -107,9 +107,9 @@ class Tab():
                     len_t_array = self.metadata['t_points'][fluid_idx]
                     len_p_array = self.metadata['p_points'][fluid_idx]
 
-        self.metadata['p_array'].append(t_p[:len_p_array])
-        self.metadata['t_array'].append(t_p[len_p_array:
-                                            len_t_array+len_p_array])
+                    self.metadata['p_array'].append(t_p[:len_p_array])
+                    self.metadata['t_array'].append(t_p[len_p_array:
+                                                        len_t_array+len_p_array])
         self.data = pd.DataFrame(props_idx,
                                  index=("Fluid", "Property",
                                         "Unit")).transpose()
