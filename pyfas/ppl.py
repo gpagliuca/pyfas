@@ -171,10 +171,10 @@ class Ppl:
         """
 
         def extract_branch_value(line):
-            parts = line.split("'BRANCH:'")  # Разделяем строку по 'BRANCH:'
+            parts = line.split("'BRANCH:'")  
             if len(parts) > 1:
-                branch_part = parts[1].strip()  # Берем часть после 'BRANCH:' и убираем пробелы
-                # Извлекаем значение в кавычках (первое после 'BRANCH:')
+                branch_part = parts[1].strip()  
+
                 branch_value = branch_part.split("'")[1] if "'" in branch_part else None
                 return branch_value
             return None
@@ -235,12 +235,12 @@ class Ppl:
         def __to_valid_key(key):
             """Method to validate key"""
             key = str(key)
-            # Добавляем префикс, если ключ начинается с цифры
+            
             if re.match(r'^\d', key):
                 key = f"BRANCH_{key}"
-            # Заменяем все недопустимые символы на _
+            
             key = re.sub(r'[^a-zA-Z0-9_]', '_', key)
-            # Убедимся, что ключ не стал пустым после преобразований
+            
             if not key:
                 key = "EMPTY_KEY"
             return key
@@ -251,7 +251,7 @@ class Ppl:
         new_data = {}
         for key, value in data.items():
             safe_key = __to_valid_key(key)
-            # Рекурсивная обработка вложенных словарей
+            
             new_data[safe_key] = self._safe_easydict(value) if isinstance(value, dict) else value
         
         return EasyDict(new_data)
