@@ -14,6 +14,7 @@ class Ppl:
     """
     Data extraction for ppl files (OLGA >= 6.0)
     """
+
     def __init__(self, fname):
         """
         Initialize the ppl attributes
@@ -59,7 +60,7 @@ class Ppl:
         self._find_all_branches()
         self._find_all_branches_and_vars()
         self._ppl_to_dict()
-        self.create_df_dict()
+        self._create_df_dict()
 
 
     def _time_series(self):
@@ -164,7 +165,10 @@ class Ppl:
         xl_file.save()
 
 
-    def _find_all_branches(self):
+    def _find_all_branches(self) -> list:
+        """
+        Find all branch labels
+        """
 
         def extract_branch_value(line):
             parts = line.split("'BRANCH:'")  # Разделяем строку по 'BRANCH:'
@@ -178,12 +182,17 @@ class Ppl:
 
         branch_values = [extract_branch_value(line) for line in list(self.profiles.values())]
 
-        self.__all_branches = list(set(branch_values))
+        self._all_branches = list(set(branch_values))
 
 
-    def _find_all_branches_and_vars(self):
+    def _find_all_branches_and_vars(self) -> dict:
+        """
+        Create a dict of variables 
+        {'PIPE1': {ID: 'PT'}, 
+        ...}
+        """
         branches_and_props = {}
-        for branch in self.__all_branches:
+        for branch in self._all_branches:
             props = {}
             cur_branch_dict = self.filter_data(branch)
             for id in cur_branch_dict.keys():
@@ -191,42 +200,40 @@ class Ppl:
 
             branches_and_props[branch] = props
 
-        self.__branches_and_props = branches_and_props
+        self._branches_and_props = branches_and_props
 
 
     def _ppl_to_dict(self) -> dict:
-        '''Method generate json with dataframes from .ppl
-        
-        Return: dict
-        '''
+        """
+        Generation dict from .ppl
+        """
         main_dict = {}
-        for branch in self.__all_branches:
+        for branch in self._all_branches:
             property_dict = {}
-            for property_id in self.__branches_and_props[branch].keys():
+            for property_id in self._branches_and_props[branch].keys():
                 self.extract(property_id)
-                property_dict[self.__branches_and_props[branch][property_id]] = list(self.data.values())
+                property_dict[self._branches_and_props[branch][property_id]] = list(self.data.values())
                 self.data = {}
             main_dict[branch] = property_dict
         self.data = main_dict
 
 
-    def create_df(self, branch, prop):
-        df = pd.DataFrame(self.data[branch][prop][0][1]).T
+    def create_df(self, branch: str, var: str):
+        """
+        Create pandas.DataFrame for variable in branch
+        """
+        df = pd.DataFrame(self.data[branch][var][0][1]).T
         df.columns = self.time
-        df.index = self.data[branch][prop][0][0]
+        df.index = self.data[branch][var][0][0]
         return df
 
 
-    def _safe_easydict(self, data):
-        """Преобразует словарь в EasyDict с автоматическим исправлением невалидных ключей.
-        
-        Обрабатывает:
-        - Ключи, начинающиеся с цифр (добавляет префикс)
-        - Ключи с точками и другими недопустимыми символами (заменяет на _)
-        - Сохраняет вложенную структуру
+    def _safe_easydict(self, data) -> EasyDict:
         """
-        def to_valid_key(key):
-            """Внутренняя функция для преобразования ключа в валидный идентификатор"""
+        Method generates easydict obj
+        """
+        def __to_valid_key(key):
+            """Method to validate key"""
             key = str(key)
             # Добавляем префикс, если ключ начинается с цифры
             if re.match(r'^\d', key):
@@ -243,49 +250,58 @@ class Ppl:
             
         new_data = {}
         for key, value in data.items():
-            safe_key = to_valid_key(key)
+            safe_key = __to_valid_key(key)
             # Рекурсивная обработка вложенных словарей
             new_data[safe_key] = self._safe_easydict(value) if isinstance(value, dict) else value
         
         return EasyDict(new_data)
 
 
-    def create_df_dict(self):
+    def _create_df_dict(self) -> dict:
+        """
+        Generate dict with pandas.DataFrame for each variable and branch
+        """
         df_dict = {}
-        for branch in self.__all_branches:
+        for branch in self._all_branches:
             branch_dict = {}
-            for var in self.__branches_and_props[branch].values():
-                branch_dict[var] = self.create_df(branch=branch, prop=var)
+            for var in self._branches_and_props[branch].values():
+                branch_dict[var] = self.create_df(branch=branch, var=var)
 
             df_dict[branch] = branch_dict
-        print('create_df_dict is working')
+
         self.data_in_df = self._safe_easydict(df_dict)
 
 
     @property
     def branches(self):
-        print(self.__all_branches)
+        """
+        Return branch labels
+        """
+        return self._all_branches
 
 
     @property
     def timesteps(self):
-        print(self.time)
+        """
+        Return timesteps
+        """
+        return self.time
 
 
     @property
     def info(self):
+        """
+        Return info about .ppl
+        """
         print(f'Timesteps: {self.time}')
         print('===')
         print(f'Number of timesteps: {len(self.time)}')
         print('===')
-        print(f'Branches:{self.__all_branches}')
+        print(f'Branches:{self._all_branches}')
         print('====')
         print('Props:')
-        pprint( self.__branches_and_props, compact= True, width= 200)
+        pprint( self._branches_and_props, compact= True, width= 200)
 
 
 
-if __name__ == '__main__':
-    ppl_test = Ppl(r'C:\Users\user\Desktop\pyfas\pyfas\pyfas\test.ppl')
-    ppl_test.info
-    #print(ppl_test.data_in_df)
+

@@ -5,7 +5,11 @@ class ESPDBFile:
     @staticmethod
     def create_espdb(path, esp_vers, esp_label, esp_model, freq, min_rate:float, max_rate:float,
                 flow_rate:list, head_per_stage:list, power:list, rate_units = 'm3/sec'):
-
+        '''
+        flow_rate - m3/day
+        head_per_stage - MPa
+        power - kW
+        '''
         strings_to_txtfile = []
         if len(flow_rate) == len(head_per_stage) == len(power):
             for i in range(len(flow_rate)):
@@ -14,7 +18,7 @@ class ESPDBFile:
                                             f'{flow_rate[i]/86400},VolumeFlow,{rate_units},{head_per_stage[i]},Zlength,m,{power[i] * 0.00135962},Power,hp\n'))
 
         else:
-            raise ValueError('Длины переданных массивов не совпадают')
+            raise ValueError('Arrays must be the same legth')
         # здесь будем формировать список из строк, который надо занести в .txt
 
         with open(path, 'w+') as txtfile:
@@ -23,7 +27,7 @@ class ESPDBFile:
             txtfile.writelines(strings_to_txtfile)
             txtfile.close()
 
-    
+
 
 if __name__ == '__main__':
     esp = ESPDBFile()
