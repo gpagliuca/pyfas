@@ -6,12 +6,15 @@ import os
 import re
 import pandas as pd
 import numpy as np
-
+from easydict import EasyDict
+from pprint import pprint
 
 class Ppl:
+    
     """
     Data extraction for ppl files (OLGA >= 6.0)
     """
+
     def __init__(self, fname):
         """
         Initialize the ppl attributes
@@ -54,12 +57,19 @@ class Ppl:
             branch = branch_raw.replace("\'", '').replace("\n", '')
             self.extract_geometry(branch, branch_idx+2)
 
+        self._find_all_branches()
+        self._find_all_branches_and_vars()
+        self._ppl_to_dict()
+        self._create_df_dict()
+
+
     def _time_series(self):
         with open(self.abspath) as fobj:
             self.time = []
             for line in fobj.readlines()[1+self._attributes['data_idx']::
                                          self._attributes['nvar']+1]:
                 self.time.append(float(line))
+
 
     def filter_data(self, pattern=''):
         """
@@ -74,9 +84,11 @@ class Ppl:
                     filtered_profiles[idx-self._attributes['CATALOG']-1] = line
         return filtered_profiles
 
+
     def _define_branch(self, variable_idx):
-        return re.findall(r"'(.*)'", \
+        return re.findall(r"'(.+?)'", \
                           self.profiles[variable_idx])[2]
+
 
     def extract_geometry(self, branch, branch_begin):
         """
@@ -97,6 +109,7 @@ class Ppl:
         xy_geo = raw_geometry
         self.geometries[branch] = (xy_geo[:int(len(xy_geo)/2)],
                                    xy_geo[int(len(xy_geo)/2):])
+
 
     def extract(self, variable_idx):
         """
@@ -124,6 +137,7 @@ class Ppl:
         else:
             self.data[variable_idx][0] = np.array(x_no_st)
 
+
     def to_excel(self, *args):
         """
         Dump all the data to excel, fname and path can be passed as args
@@ -149,3 +163,145 @@ class Ppl:
             mylabel = "{} - {} - {}".format(myvar, br_label, unit)
             data_df.to_excel(xl_file, sheet_name=mylabel)
         xl_file.save()
+
+
+    def _find_all_branches(self) -> list:
+        """
+        Find all branch labels
+        """
+
+        def extract_branch_value(line):
+            parts = line.split("'BRANCH:'")  
+            if len(parts) > 1:
+                branch_part = parts[1].strip()  
+
+                branch_value = branch_part.split("'")[1] if "'" in branch_part else None
+                return branch_value
+            return None
+
+
+        branch_values = [extract_branch_value(line) for line in list(self.profiles.values())]
+
+        self._all_branches = list(set(branch_values))
+
+
+    def _find_all_branches_and_vars(self) -> dict:
+        """
+        Create a dict of variables 
+        {'PIPE1': {ID: 'PT'}, 
+        ...}
+        """
+        branches_and_props = {}
+        for branch in self._all_branches:
+            props = {}
+            cur_branch_dict = self.filter_data(branch)
+            for id in cur_branch_dict.keys():
+                props[id] = cur_branch_dict[id].split(' ')[0].strip()
+
+            branches_and_props[branch] = props
+
+        self._branches_and_props = branches_and_props
+
+
+    def _ppl_to_dict(self) -> dict:
+        """
+        Generation dict from .ppl
+        """
+        main_dict = {}
+        for branch in self._all_branches:
+            property_dict = {}
+            for property_id in self._branches_and_props[branch].keys():
+                self.extract(property_id)
+                property_dict[self._branches_and_props[branch][property_id]] = list(self.data.values())
+                self.data = {}
+            main_dict[branch] = property_dict
+        self.data = main_dict
+
+
+    def create_df(self, branch: str, var: str):
+        """
+        Create pandas.DataFrame for variable in branch
+        """
+        df = pd.DataFrame(self.data[branch][var][0][1]).T
+        df.columns = self.time
+        df.index = self.data[branch][var][0][0]
+        return df
+
+
+    def _safe_easydict(self, data) -> EasyDict:
+        """
+        Method generates easydict obj
+        """
+        def __to_valid_key(key):
+            """Method to validate key"""
+            key = str(key)
+            
+            if re.match(r'^\d', key):
+                key = f"BRANCH_{key}"
+            
+            key = re.sub(r'[^a-zA-Z0-9_]', '_', key)
+            
+            if not key:
+                key = "EMPTY_KEY"
+            return key
+
+        if not isinstance(data, dict):
+            return data
+            
+        new_data = {}
+        for key, value in data.items():
+            safe_key = __to_valid_key(key)
+            
+            new_data[safe_key] = self._safe_easydict(value) if isinstance(value, dict) else value
+        
+        return EasyDict(new_data)
+
+
+    def _create_df_dict(self) -> dict:
+        """
+        Generate dict with pandas.DataFrame for each variable and branch
+        """
+        df_dict = {}
+        for branch in self._all_branches:
+            branch_dict = {}
+            for var in self._branches_and_props[branch].values():
+                branch_dict[var] = self.create_df(branch=branch, var=var)
+
+            df_dict[branch] = branch_dict
+
+        self.data_in_df = self._safe_easydict(df_dict)
+
+
+    @property
+    def branches(self):
+        """
+        Return branch labels
+        """
+        return self._all_branches
+
+
+    @property
+    def timesteps(self):
+        """
+        Return timesteps
+        """
+        return self.time
+
+
+    @property
+    def info(self):
+        """
+        Return info about .ppl
+        """
+        print(f'Timesteps: {self.time}')
+        print('===')
+        print(f'Number of timesteps: {len(self.time)}')
+        print('===')
+        print(f'Branches:{self._all_branches}')
+        print('====')
+        print('Props:')
+        pprint( self._branches_and_props, compact= True, width= 200)
+
+
+
+
