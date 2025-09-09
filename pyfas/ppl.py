@@ -104,7 +104,7 @@ class Ppl:
                     except ValueError:
                         pass
                 raw_geometry.extend(points)
-                if ('CATALOG' in line) or ('BRANCH' in line) or ('ANNULUS' in line):
+                if re.search(r"[A-DF-Z]", line) is not None:
                     break
         xy_geo = raw_geometry
         self.geometries[branch] = (xy_geo[:int(len(xy_geo)/2)],
@@ -301,6 +301,7 @@ class Ppl:
         print('====')
         print('Props:')
         pprint( self._branches_and_props, compact= True, width= 200)
+
 
 
 
